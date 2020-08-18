@@ -1,5 +1,5 @@
 # .NET Summer 2020 (external)
-## Task 06. Database_development
+## Task06. Database_development
 ### Task
 * Develop a normalized database for storing information about results of passing the session by students, if you know:
 1. full name, gender, date of birth, student's group;
