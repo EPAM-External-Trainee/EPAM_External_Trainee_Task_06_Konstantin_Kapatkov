@@ -1,4 +1,4 @@
-﻿namespace ResultsOfTheSession.Interfaces
+﻿namespace ResultsOfTheSession.ORM.Interfaces
 {
     public interface ISubject
     {

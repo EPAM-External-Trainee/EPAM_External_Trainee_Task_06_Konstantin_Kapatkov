@@ -1,11 +1,9 @@
-﻿namespace ResultsOfTheSession.Interfaces.Group
+﻿namespace ResultsOfTheSession.ORM.Interfaces
 {
     public interface IGroup
     {
         int Id { get; set; }
 
         string Name { get; set; }
-
-        int SessionInfoId { get; set; }
     }
 }

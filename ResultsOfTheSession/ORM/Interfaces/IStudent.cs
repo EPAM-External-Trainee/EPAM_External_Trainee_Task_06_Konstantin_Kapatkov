@@ -1,7 +1,6 @@
-﻿using ResultsOfTheSession.Enums;
-using System;
+﻿using System;
 
-namespace ResultsOfTheSession.Interfaces
+namespace ResultsOfTheSession.ORM.Interfaces
 {
     public interface IStudent
     {
@@ -13,10 +12,10 @@ namespace ResultsOfTheSession.Interfaces
 
         string Patronymic { get; set; }
 
-        Gender Gender { get; set; }
+        int GenderId { get; set; }
 
         DateTime Birthday { get; set; }
 
-        int GroupID { get; set; }
+        int GroupId { get; set; }
     }
 }
