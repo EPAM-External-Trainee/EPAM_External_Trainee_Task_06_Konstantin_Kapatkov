@@ -75,22 +75,6 @@ CREATE TABLE [dbo].[Students](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Students]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Students_dbo.Genders_GenderId] FOREIGN KEY([GenderId])
-REFERENCES [dbo].[Genders] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[Students] CHECK CONSTRAINT [FK_dbo.Students_dbo.Genders_GenderId]
-GO
-
-ALTER TABLE [dbo].[Students]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Students_dbo.Groups_GroupId] FOREIGN KEY([GroupId])
-REFERENCES [dbo].[Groups] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[Students] CHECK CONSTRAINT [FK_dbo.Students_dbo.Groups_GroupId]
-GO
-
 CREATE TABLE [dbo].[Sessions](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](max) NULL,
@@ -116,38 +100,6 @@ CREATE TABLE [dbo].[SessionSchedules](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[SessionSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionSchedules_dbo.Groups_GroupId] FOREIGN KEY([GroupId])
-REFERENCES [dbo].[Groups] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionSchedules] CHECK CONSTRAINT [FK_dbo.SessionSchedules_dbo.Groups_GroupId]
-GO
-
-ALTER TABLE [dbo].[SessionSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionSchedules_dbo.KnowledgeAssessmentForms_KnowledgeAssessmentFormId] FOREIGN KEY([KnowledgeAssessmentFormId])
-REFERENCES [dbo].[KnowledgeAssessmentForms] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionSchedules] CHECK CONSTRAINT [FK_dbo.SessionSchedules_dbo.KnowledgeAssessmentForms_KnowledgeAssessmentFormId]
-GO
-
-ALTER TABLE [dbo].[SessionSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionSchedules_dbo.Sessions_SessionId] FOREIGN KEY([SessionId])
-REFERENCES [dbo].[Sessions] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionSchedules] CHECK CONSTRAINT [FK_dbo.SessionSchedules_dbo.Sessions_SessionId]
-GO
-
-ALTER TABLE [dbo].[SessionSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionSchedules_dbo.Subjects_SubjectId] FOREIGN KEY([SubjectId])
-REFERENCES [dbo].[Subjects] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionSchedules] CHECK CONSTRAINT [FK_dbo.SessionSchedules_dbo.Subjects_SubjectId]
-GO
-
 CREATE TABLE [dbo].[SessionResults](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[SubjectId] [int] NOT NULL,
@@ -158,20 +110,4 @@ CREATE TABLE [dbo].[SessionResults](
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[SessionResults]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionResults_dbo.Students_StudentId] FOREIGN KEY([StudentId])
-REFERENCES [dbo].[Students] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionResults] CHECK CONSTRAINT [FK_dbo.SessionResults_dbo.Students_StudentId]
-GO
-
-ALTER TABLE [dbo].[SessionResults]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SessionResults_dbo.Subjects_SubjectId] FOREIGN KEY([SubjectId])
-REFERENCES [dbo].[Subjects] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[SessionResults] CHECK CONSTRAINT [FK_dbo.SessionResults_dbo.Subjects_SubjectId]
 GO
