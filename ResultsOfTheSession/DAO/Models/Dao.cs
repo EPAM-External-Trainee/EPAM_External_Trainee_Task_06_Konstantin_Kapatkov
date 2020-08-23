@@ -45,7 +45,6 @@ namespace ResultsOfTheSession.DAO.Models
         public T Read(int id)
         {
             Type type = typeof(T);
-            PropertyInfo[] propertyInfos = type.GetProperties();
 
             string tableName = $"{type.Name}s";
             string idValue = $"@{type.GetProperty("Id").Name}";
