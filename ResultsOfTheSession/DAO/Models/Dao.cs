@@ -127,7 +127,7 @@ namespace ResultsOfTheSession.DAO.Models
             string tableName = $"{type.Name}s";
 
             using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = new SqlCommand($"SELECT * FROM {tableName}", connection);
+            using SqlCommand command = new SqlCommand($"SELECT * FROM [dbo].[{tableName}]", connection);
 
             connection.Open();
             using SqlDataReader dataReader = command.ExecuteReader();
