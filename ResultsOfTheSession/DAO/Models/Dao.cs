@@ -40,7 +40,7 @@ namespace ResultsOfTheSession.DAO.Models
             connection.Open();
             command.CommandText = $"INSERT INTO [dbo].[{tableName}] ({string.Join(",", tableColumns)}) VALUES ({string.Join(",", parameters)})";
             command.Connection = connection;
-            await command.ExecuteNonQueryAsync();
+            await command.ExecuteNonQueryAsync().ConfigureAwait(false);
             return true;
         }
 
@@ -62,7 +62,7 @@ namespace ResultsOfTheSession.DAO.Models
             {
                 List<object> entityParams = new List<object>();
 
-                while (await dataReader.ReadAsync())
+                while (await dataReader.ReadAsync().ConfigureAwait(false))
                 {
                     for (int i = 0; i < dataReader.FieldCount; i++)
                     {
@@ -103,7 +103,7 @@ namespace ResultsOfTheSession.DAO.Models
             connection.Open();
             command.Connection = connection;
             command.CommandText = $"UPDATE [dbo].[{tableName}] SET {string.Join(",", tableColumns)} WHERE Id = {idValue}";
-            await command.ExecuteNonQueryAsync();
+            await command.ExecuteNonQueryAsync().ConfigureAwait(false);
 
             return true;
         }
@@ -120,7 +120,7 @@ namespace ResultsOfTheSession.DAO.Models
             command.Parameters.AddWithValue(idValue, id);
 
             connection.Open();
-            await command.ExecuteNonQueryAsync();
+            await command.ExecuteNonQueryAsync().ConfigureAwait(false);
 
             return true;
         }
@@ -143,7 +143,7 @@ namespace ResultsOfTheSession.DAO.Models
             {
                 List<object> properties = new List<object>();
 
-                while (await dataReader.ReadAsync())
+                while (await dataReader.ReadAsync().ConfigureAwait(false))
                 {
                     for (int i = 0; i < dataReader.FieldCount; i++)
                     {
