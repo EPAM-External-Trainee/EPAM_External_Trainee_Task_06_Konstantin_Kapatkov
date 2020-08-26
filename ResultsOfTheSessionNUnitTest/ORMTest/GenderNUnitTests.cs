@@ -3,6 +3,7 @@ using ResultsOfTheSession.DAO;
 using ResultsOfTheSession.DAO.Interfaces;
 using ResultsOfTheSession.ORM.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ResultsOfTheSessionNUnitTest
 {
@@ -22,32 +23,32 @@ namespace ResultsOfTheSessionNUnitTest
         public void CreateGender_Test()
         {
             Gender gender = new Gender("Unknown");
-            _daoGender.Create(gender);
+            bool result = Task.Run(async () => await _daoGender.CreateAsync(gender).ConfigureAwait(false)).Result;
         }
 
         [Test]
         public void ReadGender_Test()
         {
-            Gender gender = _daoGender.Read(1);
+            Gender gender = Task.Run(async () => await _daoGender.ReadAsync(1).ConfigureAwait(false)).Result;
         }
 
         [Test]
         public void UpdateGender_Test()
         {
             Gender gender = new Gender(1, "Unknown");
-            _daoGender.Update(gender);
+            bool result = Task.Run(async () => await _daoGender.UpdateAsync(gender).ConfigureAwait(false)).Result;
         }
 
         [Test]
         public void DeleteGender_Test()
         {
-            _daoGender.Delete(3);
+            bool result = Task.Run(async () => await _daoGender.DeleteAsync(3).ConfigureAwait(false)).Result;
         }
 
         [Test]
         public void ReadAllGender_Test()
         {
-           IEnumerable<Gender> tmp = _daoGender.ReadAll();
+           IEnumerable<Gender> result = Task.Run(async () => await _daoGender.ReadAllAsync().ConfigureAwait(false)).Result;
         }
     }
 }

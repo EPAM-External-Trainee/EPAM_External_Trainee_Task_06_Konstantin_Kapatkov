@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace ResultsOfTheSession.DAO.Models
 {
@@ -12,7 +13,7 @@ namespace ResultsOfTheSession.DAO.Models
 
         public Dao(string connectionString) => _connectionString = connectionString;
 
-        public void Create(T data)
+        public async Task<bool> CreateAsync(T data)
         {
             Type dataType = GetTypeAndPropInfo(data).Item1;
             PropertyInfo[] propertyInfos = GetTypeAndPropInfo(data).Item2;
@@ -39,10 +40,11 @@ namespace ResultsOfTheSession.DAO.Models
             connection.Open();
             command.CommandText = $"INSERT INTO [dbo].[{tableName}] ({string.Join(",", tableColumns)}) VALUES ({string.Join(",", parameters)})";
             command.Connection = connection;
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
+            return true;
         }
 
-        public T Read(int id)
+        public async Task<T> ReadAsync(int id)
         {
             Type type = typeof(T);
 
@@ -60,7 +62,7 @@ namespace ResultsOfTheSession.DAO.Models
             {
                 List<object> entityParams = new List<object>();
 
-                while (dataReader.Read())
+                while (await dataReader.ReadAsync())
                 {
                     for (int i = 0; i < dataReader.FieldCount; i++)
                     {
@@ -74,7 +76,7 @@ namespace ResultsOfTheSession.DAO.Models
             throw new ArgumentException($"Entity with id = {id} wasn't found.");
         }
 
-        public void Update(T data)
+        public async Task<bool> UpdateAsync(T data)
         {
             Type dataType = GetTypeAndPropInfo(data).Item1;
             PropertyInfo[] propertyInfos = GetTypeAndPropInfo(data).Item2;
@@ -101,10 +103,12 @@ namespace ResultsOfTheSession.DAO.Models
             connection.Open();
             command.Connection = connection;
             command.CommandText = $"UPDATE [dbo].[{tableName}] SET {string.Join(",", tableColumns)} WHERE Id = {idValue}";
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
+
+            return true;
         }
 
-        public void Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             Type type = typeof(T);
 
@@ -116,10 +120,12 @@ namespace ResultsOfTheSession.DAO.Models
             command.Parameters.AddWithValue(idValue, id);
 
             connection.Open();
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
+
+            return true;
         }
 
-        public IEnumerable<T> ReadAll()
+        public async Task<IEnumerable<T>> ReadAllAsync()
         {
             Type type = typeof(T);
             PropertyInfo[] propertyInfos = type.GetProperties();
@@ -137,7 +143,7 @@ namespace ResultsOfTheSession.DAO.Models
             {
                 List<object> properties = new List<object>();
 
-                while (dataReader.Read())
+                while (await dataReader.ReadAsync())
                 {
                     for (int i = 0; i < dataReader.FieldCount; i++)
                     {
