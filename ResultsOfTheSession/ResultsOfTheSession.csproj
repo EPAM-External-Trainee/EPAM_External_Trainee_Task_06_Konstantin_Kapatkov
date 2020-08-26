@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="PreparationOfReports\wdqwdqw\**" />
-    <EmbeddedResource Remove="PreparationOfReports\wdqwdqw\**" />
-    <None Remove="PreparationOfReports\wdqwdqw\**" />
+    <Compile Remove="Reports\wdqwdqw\**" />
+    <EmbeddedResource Remove="Reports\wdqwdqw\**" />
+    <None Remove="Reports\wdqwdqw\**" />
   </ItemGroup>
 
   <ItemGroup>
