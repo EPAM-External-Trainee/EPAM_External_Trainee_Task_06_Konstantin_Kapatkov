@@ -19,6 +19,6 @@ namespace ResultsOfTheSession.ORM.Models.Session
 
         public override int GetHashCode() => HashCode.Combine(Id, Name, AcademicYear);
 
-        public override string ToString() => $"Session id: {Id}, name: {Name}, academic year: {AcademicYear}.";
+        public override string ToString() => $"{Name}, academic year: {AcademicYear}";
     }
 }
