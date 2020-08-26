@@ -10,7 +10,7 @@
 
         string Subject { get; set; }
 
-        string Type { get; set; }
+        string Form { get; set; }
 
         string Date { get; set; }
 

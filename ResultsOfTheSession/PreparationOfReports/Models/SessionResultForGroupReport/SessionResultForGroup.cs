@@ -44,7 +44,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Subject, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
                     case SessionResultForGroupReportOrderBy.KnowledgeAssessmentForm:
-                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Type, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Form, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
                     case SessionResultForGroupReportOrderBy.Date:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Date, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
@@ -78,7 +78,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
                             join kaf in KnowledgeAssessmentForms on ss.KnowledgeAssessmentFormId equals kaf.Id
                             join g in Groups on st.GroupId equals g.Id
                             where ss.SubjectId == sr.SubjectId && ss.SessionId == sessionId && st.GroupId == groupId
-                            select new SessionResultForGroupReportRawView { Surname = st.Surname, Name = st.Name, Patronymic = st.Patronymic, Subject = s.Name, Type = kaf.Form, Date = ss.Date.ToShortDateString(), Assessment = sr.Assessment });
+                            select new SessionResultForGroupReportRawView { Surname = st.Surname, Name = st.Name, Patronymic = st.Patronymic, Subject = s.Name, Form = kaf.Form, Date = ss.Date.ToShortDateString(), Assessment = sr.Assessment });
             return result;
         }
 

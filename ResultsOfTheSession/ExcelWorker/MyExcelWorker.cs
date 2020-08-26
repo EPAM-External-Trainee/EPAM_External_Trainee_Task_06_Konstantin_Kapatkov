@@ -3,10 +3,12 @@ using OfficeOpenXml.Style;
 using ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace ResultsOfTheSession.ExcelWorker
 {
@@ -47,7 +49,7 @@ namespace ResultsOfTheSession.ExcelWorker
                     workSheet.Cells[i, 2].Value = data.SessionResultForGroupRawViews.ToList()[j].Name;
                     workSheet.Cells[i, 3].Value = data.SessionResultForGroupRawViews.ToList()[j].Patronymic;
                     workSheet.Cells[i, 4].Value = data.SessionResultForGroupRawViews.ToList()[j].Subject;
-                    workSheet.Cells[i, 5].Value = data.SessionResultForGroupRawViews.ToList()[j].Type;
+                    workSheet.Cells[i, 5].Value = data.SessionResultForGroupRawViews.ToList()[j].Form;
                     workSheet.Cells[i, 6].Value = data.SessionResultForGroupRawViews.ToList()[j].Date;
                     workSheet.Cells[i, 7].Value = data.SessionResultForGroupRawViews.ToList()[j].Assessment;
                 }
@@ -176,3 +178,11 @@ namespace ResultsOfTheSession.ExcelWorker
         }
     }
 }
+
+//PropertyInfo[] propertyInfos = data.SessionResultForGroupRawViews.GetType().GetGenericArguments()[0].GetProperties();
+
+//for (int k = 1; k <= propertyInfos.Length; k++)
+//{
+//    workSheet.Cells[i, k].Value = data.SessionResultForGroupRawViews.ToList()[j].GetType().GetProperties()[--k].GetValue(data.SessionResultForGroupRawViews.ToList()[j]);
+//    ++k;
+//}
