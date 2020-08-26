@@ -1,3 +1,6 @@
+USE [ResultSession]
+GO
+
 ALTER TABLE [dbo].[Students]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Students_dbo.Genders_GenderId] FOREIGN KEY([GenderId])
 REFERENCES [dbo].[Genders] ([Id])
 ON DELETE CASCADE
