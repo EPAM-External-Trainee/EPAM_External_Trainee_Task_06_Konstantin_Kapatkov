@@ -3,9 +3,8 @@
 ### Task
 * Develop a normalized database for storing information about results of passing the session by students, if you know:
 1. full name, gender, date of birth, student's group;
-2. names and dates are known for each group;
-3. exams and credits in each specific session;
-4. the results of the session are known for each student.
+2. names and dates of the event are known for each group exams and credits in each specific session
+3. the results of the session are known for each student.
 * Implement a class hierarchy and ORM for this database.
 * Implement CRUD using ADO.NET and reflection.
 * Provide for saving the session results for each session to an xlsx file group as a table.
