@@ -23,27 +23,18 @@ namespace ResultsOfTheSession.ExcelWorker
                 int currentRow = 1;
                 workSheet = excel.Workbook.Worksheets.Add(data.GroupName);
 
-                workSheet.TabColor = Color.Black;
-                workSheet.DefaultRowHeight = 12;
-                workSheet.DefaultColWidth = 20;
-
-                workSheet.Row(currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetWorkSheetStyle(workSheet);
+                SetRowStyle(workSheet.Row(currentRow));
 
                 workSheet.Cells[currentRow, currentRow].Value = data.SessionInfo;
                 workSheet.Cells[currentRow, currentRow, currentRow, data.Headers.Length].Merge = true;
 
-                workSheet.Row(++currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetRowStyle(workSheet.Row(++currentRow));
 
                 workSheet.Cells[currentRow, currentRow].Value = $"Group: {data.GroupName}";
                 workSheet.Cells[currentRow, currentRow, currentRow, data.Headers.Length].Merge = true;
 
-                workSheet.Row(++currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetRowStyle(workSheet.Row(++currentRow));
 
                 for (int i = 0; i < data.Headers.Length; i++)
                 {
@@ -66,7 +57,9 @@ namespace ResultsOfTheSession.ExcelWorker
 
             FileStream objFileStrm = File.Create(filePath);
             objFileStrm.Close();
+
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
+
             excel.Dispose();
             workSheet.Dispose();
         }
@@ -82,20 +75,13 @@ namespace ResultsOfTheSession.ExcelWorker
                 int currentRow = 1;
                 workSheet = excel.Workbook.Worksheets.Add(data.AcademicYear);
 
-                workSheet.TabColor = Color.Black;
-                workSheet.DefaultRowHeight = 12;
-                workSheet.DefaultColWidth = 20;
-
-                workSheet.Row(currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetWorkSheetStyle(workSheet);
+                SetRowStyle(workSheet.Row(currentRow));
 
                 workSheet.Cells[currentRow, currentRow].Value = data.SessionName;
                 workSheet.Cells[currentRow, currentRow, currentRow, data.Headers.Length].Merge = true;
 
-                workSheet.Row(++currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetRowStyle(workSheet.Row(++currentRow));
 
                 for (int i = 0; i < data.Headers.Length; i++)
                 {
@@ -115,7 +101,9 @@ namespace ResultsOfTheSession.ExcelWorker
 
             using FileStream objFileStrm = File.Create(filePath);
             objFileStrm.Close();
+
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
+
             excel.Dispose();
             workSheet.Dispose();
         }
@@ -131,20 +119,13 @@ namespace ResultsOfTheSession.ExcelWorker
                 int currentRow = 1;
                 workSheet = excel.Workbook.Worksheets.Add(data.GroupName);
 
-                workSheet.TabColor = Color.Black;
-                workSheet.DefaultRowHeight = 12;
-                workSheet.DefaultColWidth = 20;
-
-                workSheet.Row(currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetWorkSheetStyle(workSheet);
+                SetRowStyle(workSheet.Row(currentRow));
 
                 workSheet.Cells[currentRow, currentRow].Value = $"{data.GroupName} students to be expelled";
                 workSheet.Cells[currentRow, currentRow, currentRow, data.Headers.Length].Merge = true;
 
-                workSheet.Row(++currentRow).Height = 20;
-                workSheet.Row(currentRow).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                workSheet.Row(currentRow).Style.Font.Bold = true;
+                SetRowStyle(workSheet.Row(++currentRow));
 
                 for (int i = 0; i < data.Headers.Length; i++)
                 {
@@ -163,7 +144,9 @@ namespace ResultsOfTheSession.ExcelWorker
 
             using FileStream objFileStrm = File.Create(filePath);
             objFileStrm.Close();
+
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
+
             excel.Dispose();
             workSheet.Dispose();
         }
@@ -176,6 +159,20 @@ namespace ResultsOfTheSession.ExcelWorker
             workSheet.Cells[workSheet.Dimension.Address].Style.Border.Left.Style = ExcelBorderStyle.Thin;
             workSheet.Cells[workSheet.Dimension.Address].Style.Border.Right.Style = ExcelBorderStyle.Thin;
             workSheet.Cells[workSheet.Dimension.Address].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+        }
+
+        private static void SetWorkSheetStyle(ExcelWorksheet workSheet)
+        {
+            workSheet.TabColor = Color.Black;
+            workSheet.DefaultRowHeight = 12;
+            workSheet.DefaultColWidth = 20;
+        }
+
+        private static void SetRowStyle(ExcelRow row)
+        {
+            row.Height = 20;
+            row.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            row.Style.Font.Bold = true;
         }
     }
 }
