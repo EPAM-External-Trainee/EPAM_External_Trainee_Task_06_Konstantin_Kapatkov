@@ -9,7 +9,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 {
     public class SessionResultForGroup : Report
     {
-        public SessionResultForGroup(string connectionString) : base(connectionString) { }
+        public SessionResultForGroup(string connectionString) : base(connectionString)
+        {
+        }
 
         public List<SessionResultForGroupReportData> GetReportData(int sessionId)
         {
@@ -22,20 +24,49 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             return result;
         }
 
-        public SessionResultForGroupReportData GetReportData(int sessionId, int groupId, OrderBy orderBy = OrderBy.Assessment, bool descendingOrder = false)
+        public List<SessionResultForGroupReportData> GetReportData(int sessionId, OrderBySessionResultForGroupReport orderBy = OrderBySessionResultForGroupReport.Assessment, bool descendingOrder = false)
         {
-            return orderBy switch
+            List<SessionResultForGroupReportData> result = new List<SessionResultForGroupReportData>();
+            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
-                OrderBy.Name => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Name).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.Surname => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Surname).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.Patronymic => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Patronymic).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.Subject => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Subject).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.KnowledgeAssessmentForm => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Type).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.Date => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(r => r.Date).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                OrderBy.Assessment => new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderByDescending(r => r.Assessment, new AssessmentComparer()).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) },
-                _ => throw new NotImplementedException(),
-            };
+                switch (orderBy)
+                {
+                    case OrderBySessionResultForGroupReport.Name:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Name, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.Surname:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Surname, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.Patronymic:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Patronymic, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.Subject:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Subject, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.KnowledgeAssessmentForm:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Type, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.Date:
+                        result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Date, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case OrderBySessionResultForGroupReport.Assessment:
+                        if (descendingOrder)
+                        {
+                            result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(sr => sr.Assessment, new AssessmentComparer()).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        }
+                        else
+                        {
+                            result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderByDescending(sr => sr.Assessment, new AssessmentComparer()).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                        }
+                        
+                        break;
+                }
+            }
+
+            return result;
         }
+
+        private IEnumerable<SessionResultForGroupReportRawView> OrderByData(IEnumerable<SessionResultForGroupReportRawView> data, Func<SessionResultForGroupReportRawView, object> predicate, bool isDescOrder) => !isDescOrder ? data.OrderBy(predicate) : data.OrderByDescending(predicate);
 
         private IEnumerable<SessionResultForGroupReportRawView> GetRowData(int sessionId, int groupId)
         {

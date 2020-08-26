@@ -10,7 +10,9 @@ namespace ResultsOfTheSession.DAO
         private static DaoFactory _instance;
         private static string _connectionString;
 
-        private DaoFactory() { }
+        private DaoFactory()
+        {
+        }
 
         public static DaoFactory GetInstance(string connectionString)
         {

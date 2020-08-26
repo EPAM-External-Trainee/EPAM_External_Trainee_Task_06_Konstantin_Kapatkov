@@ -1,4 +1,4 @@
 ﻿namespace ResultsOfTheSession.PreparationOfReports.Enums
 {
-    public enum OrderBy { Name, Surname, Patronymic, Subject, KnowledgeAssessmentForm, Date, Assessment }
+    public enum OrderBySessionResultForGroupReport { Name, Surname, Patronymic, Subject, KnowledgeAssessmentForm, Date, Assessment }
 }

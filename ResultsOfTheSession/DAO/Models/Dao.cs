@@ -55,7 +55,7 @@ namespace ResultsOfTheSession.DAO.Models
             connection.Open();
 
             using SqlDataReader dataReader = command.ExecuteReader();
-         
+
             if (dataReader.HasRows && dataReader.FieldCount > 0)
             {
                 List<object> entityParams = new List<object>();

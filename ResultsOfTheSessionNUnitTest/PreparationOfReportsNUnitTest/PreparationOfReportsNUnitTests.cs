@@ -15,7 +15,7 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
         public void ReportSessionResultForGroup_Test()
         {
             SessionResultForGroup sessionResultForGroup = new SessionResultForGroup(_connectionString);
-            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
+            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2, OrderBySessionResultForGroupReport.Assessment, false), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
         }
 
         [Test]

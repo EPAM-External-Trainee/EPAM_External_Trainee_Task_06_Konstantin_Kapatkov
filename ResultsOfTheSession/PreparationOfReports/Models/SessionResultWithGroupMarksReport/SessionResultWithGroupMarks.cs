@@ -6,7 +6,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 {
     public class SessionResultWithGroupMarks : Report
     {
-        public SessionResultWithGroupMarks(string connectionString) : base(connectionString) { }
+        public SessionResultWithGroupMarks(string connectionString) : base(connectionString)
+        {
+        }
 
         private IEnumerable<SessionResultWithGroupMarksReportRawView> GetRowData(int sessionId)
         {

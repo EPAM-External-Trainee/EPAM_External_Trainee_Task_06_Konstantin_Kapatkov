@@ -4,6 +4,8 @@ namespace ResultsOfTheSession.DAO.Models
 {
     public class DaoSessionResult : Dao<SessionResult>
     {
-        public DaoSessionResult(string connectionString) : base(connectionString) { }
+        public DaoSessionResult(string connectionString) : base(connectionString)
+        {
+        }
     }
 }

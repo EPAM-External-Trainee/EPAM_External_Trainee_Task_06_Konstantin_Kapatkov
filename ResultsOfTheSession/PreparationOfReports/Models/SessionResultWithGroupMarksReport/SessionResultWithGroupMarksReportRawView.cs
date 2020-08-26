@@ -9,6 +9,5 @@
         public double MinAssessment { get; set; }
 
         public double AvgAssessment { get; set; }
-
     }
 }

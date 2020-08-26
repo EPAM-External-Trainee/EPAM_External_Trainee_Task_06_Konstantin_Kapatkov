@@ -5,12 +5,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces.ExpelledStudentsRe
 {
     public interface IExpelledStudentsReportData
     {
-
         List<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }
 
         string AcademicYear { get; set; }
 
-        string GroupName { get; set;}
+        string GroupName { get; set; }
 
         string[] Headers { get; set; }
     }

@@ -4,6 +4,8 @@ namespace ResultsOfTheSession.DAO.Models
 {
     public class DaoKnowledgeAssessmentForm : Dao<KnowledgeAssessmentForm>
     {
-        public DaoKnowledgeAssessmentForm(string connectionString) : base(connectionString) { }
+        public DaoKnowledgeAssessmentForm(string connectionString) : base(connectionString)
+        {
+        }
     }
 }

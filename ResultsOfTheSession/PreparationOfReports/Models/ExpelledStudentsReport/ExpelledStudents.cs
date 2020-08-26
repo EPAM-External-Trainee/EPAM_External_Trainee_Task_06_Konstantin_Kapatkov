@@ -6,14 +6,16 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
     public class ExpelledStudents : Report
     {
-        public ExpelledStudents(string connectionString) : base(connectionString) { }
+        public ExpelledStudents(string connectionString) : base(connectionString)
+        {
+        }
 
         public List<ExpelledStudentsReportData> GetReportData(int sessionId)
         {
             List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
             foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
-                result.Add(new ExpelledStudentsReportData {  ExpelledStudentsReportRawViews = GetRowData(sessionId, groupId).ToList(), AcademicYear = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
+                result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = GetRowData(sessionId, groupId).ToList(), AcademicYear = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
             }
 
             return result;
@@ -21,7 +23,6 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 
         private IEnumerable<ExpelledStudentsReportRawView> GetRowData(int sessionId, int groupId)
         {
-
             List<ExpelledStudentsReportRawView> result = new List<ExpelledStudentsReportRawView>();
 
             var query = from sr in SessionResults
