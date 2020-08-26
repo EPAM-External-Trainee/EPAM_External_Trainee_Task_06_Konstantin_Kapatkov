@@ -1,4 +1,6 @@
 ﻿using ResultsOfTheSession.PreparationOfReports.Abstract;
+using ResultsOfTheSession.PreparationOfReports.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +33,6 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
             return result;
         }
 
-        private string GetSessionInfo(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).Name;
 
         public List<SessionResultWithGroupMarksReportData> GetReportData()
         {
@@ -39,10 +40,42 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
             foreach (var session in Sessions)
             {
-                result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = GetRowData(session.Id).ToList(), SessionName = Sessions.FirstOrDefault(s => s.Id == session.Id).Name, AcademicYear = Sessions.FirstOrDefault(s => s.Id == session.Id).AcademicYear });
+                result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = GetRowData(session.Id).ToList(), SessionName = Sessions.Find(s => s.Id == session.Id).Name, AcademicYear = Sessions.Find(s => s.Id == session.Id).AcademicYear });
             }
 
             return result;
         }
+
+        public List<SessionResultWithGroupMarksReportData> GetReportData(SessionResultWithGroupMarksReportOrderBy orderBy, bool descendingOrder = false)
+        {
+            List<SessionResultWithGroupMarksReportData> result = new List<SessionResultWithGroupMarksReportData>();
+
+            foreach (var session in Sessions)
+            {
+                switch (orderBy)
+                {
+                    case SessionResultWithGroupMarksReportOrderBy.GroupName:
+                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.GroupName, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        break;
+                    case SessionResultWithGroupMarksReportOrderBy.MaxAssessment:
+                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MaxAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        break;
+                    case SessionResultWithGroupMarksReportOrderBy.MinAssessment:
+                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MinAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        break;
+                    case SessionResultWithGroupMarksReportOrderBy.AverageAssessment:
+                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.AvgAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        private IEnumerable<SessionResultWithGroupMarksReportRawView> OrderByData(IEnumerable<SessionResultWithGroupMarksReportRawView> data, Func<SessionResultWithGroupMarksReportRawView, object> predicate, bool isDescOrder) => !isDescOrder ? data.OrderBy(predicate) : data.OrderByDescending(predicate);
+
+        private string GetSessionName(int sessionId) => Sessions.Find(s => s.Id == sessionId).Name;
+
+        private string GetSessionAcademicYear(int sessionId) => Sessions.Find(s => s.Id == sessionId).AcademicYear;
     }
 }

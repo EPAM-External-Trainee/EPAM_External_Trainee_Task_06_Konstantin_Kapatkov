@@ -15,14 +15,14 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
         public void ReportSessionResultForGroup_Test()
         {
             SessionResultForGroup sessionResultForGroup = new SessionResultForGroup(_connectionString);
-            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2, OrderBySessionResultForGroupReport.Assessment, false), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
+            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2, SessionResultForGroupReportOrderBy.Assessment, false), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
         }
 
         [Test]
         public void ReportWithGroupMarks_Test()
         {
             SessionResultWithGroupMarks reportWithGroupMarks = new SessionResultWithGroupMarks(_connectionString);
-            MyExcelWorker.WriteToExcel(reportWithGroupMarks.GetReportData(), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultWithGroupMarks.xlsx");
+            MyExcelWorker.WriteToExcel(reportWithGroupMarks.GetReportData(SessionResultWithGroupMarksReportOrderBy.MaxAssessment, true), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultWithGroupMarks.xlsx");
         }
 
         [Test]

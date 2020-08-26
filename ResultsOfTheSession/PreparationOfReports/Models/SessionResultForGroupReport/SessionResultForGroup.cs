@@ -24,32 +24,32 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             return result;
         }
 
-        public List<SessionResultForGroupReportData> GetReportData(int sessionId, OrderBySessionResultForGroupReport orderBy = OrderBySessionResultForGroupReport.Assessment, bool descendingOrder = false)
+        public List<SessionResultForGroupReportData> GetReportData(int sessionId, SessionResultForGroupReportOrderBy orderBy = SessionResultForGroupReportOrderBy.Assessment, bool descendingOrder = false)
         {
             List<SessionResultForGroupReportData> result = new List<SessionResultForGroupReportData>();
             foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
                 switch (orderBy)
                 {
-                    case OrderBySessionResultForGroupReport.Name:
+                    case SessionResultForGroupReportOrderBy.Name:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Name, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.Surname:
+                    case SessionResultForGroupReportOrderBy.Surname:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Surname, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.Patronymic:
+                    case SessionResultForGroupReportOrderBy.Patronymic:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Patronymic, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.Subject:
+                    case SessionResultForGroupReportOrderBy.Subject:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Subject, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.KnowledgeAssessmentForm:
+                    case SessionResultForGroupReportOrderBy.KnowledgeAssessmentForm:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Type, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.Date:
+                    case SessionResultForGroupReportOrderBy.Date:
                         result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Date, descendingOrder).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
                         break;
-                    case OrderBySessionResultForGroupReport.Assessment:
+                    case SessionResultForGroupReportOrderBy.Assessment:
                         if (descendingOrder)
                         {
                             result.Add(new SessionResultForGroupReportData { SessionResultForGroupRawViews = GetRowData(sessionId, groupId).OrderBy(sr => sr.Assessment, new AssessmentComparer()).ToList(), SessionInfo = GetSessionInfo(sessionId), GroupName = GetGroupInfo(groupId) });
@@ -82,8 +82,8 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             return result;
         }
 
-        private string GetSessionInfo(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).ToString();
+        private string GetSessionInfo(int sessionId) => Sessions.Find(s => s.Id == sessionId)?.ToString();
 
-        private string GetGroupInfo(int groupId) => Groups.FirstOrDefault(g => g.Id == groupId).Name;
+        private string GetGroupInfo(int groupId) => Groups.Find(g => g.Id == groupId)?.Name;
     }
 }
