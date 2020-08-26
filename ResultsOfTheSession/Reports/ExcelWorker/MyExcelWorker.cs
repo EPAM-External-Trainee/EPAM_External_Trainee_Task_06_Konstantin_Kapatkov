@@ -3,12 +3,10 @@ using OfficeOpenXml.Style;
 using ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace ResultsOfTheSession.ExcelWorker
 {
@@ -178,11 +176,3 @@ namespace ResultsOfTheSession.ExcelWorker
         }
     }
 }
-
-//PropertyInfo[] propertyInfos = data.SessionResultForGroupRawViews.GetType().GetGenericArguments()[0].GetProperties();
-
-//for (int k = 1; k <= propertyInfos.Length; k++)
-//{
-//    workSheet.Cells[i, k].Value = data.SessionResultForGroupRawViews.ToList()[j].GetType().GetProperties()[--k].GetValue(data.SessionResultForGroupRawViews.ToList()[j]);
-//    ++k;
-//}
