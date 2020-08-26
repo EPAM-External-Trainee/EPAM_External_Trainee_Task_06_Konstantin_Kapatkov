@@ -1,6 +1,8 @@
-﻿namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
+﻿using ResultsOfTheSession.PreparationOfReports.Interfaces;
+
+namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
 {
-    public class SessionResultWithGroupMarksReportRawView
+    public class SessionResultWithGroupMarksReportRawView : ISessionResultWithGroupMarksReportRawView
     {
         public string GroupName { get; set; }
 

@@ -40,7 +40,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
             foreach (var session in Sessions)
             {
-                result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = GetRowData(session.Id).ToList(), SessionName = Sessions.Find(s => s.Id == session.Id).Name, AcademicYear = Sessions.Find(s => s.Id == session.Id).AcademicYear });
+                result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = GetRowData(session.Id).ToList(), SessionName = Sessions.Find(s => s.Id == session.Id).Name, AcademicYear = Sessions.Find(s => s.Id == session.Id).AcademicYear });
             }
 
             return result;
@@ -55,16 +55,16 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
                 switch (orderBy)
                 {
                     case SessionResultWithGroupMarksReportOrderBy.GroupName:
-                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.GroupName, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.GroupName, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
                         break;
                     case SessionResultWithGroupMarksReportOrderBy.MaxAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MaxAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MaxAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
                         break;
                     case SessionResultWithGroupMarksReportOrderBy.MinAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MinAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MinAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
                         break;
                     case SessionResultWithGroupMarksReportOrderBy.AverageAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { PrepareSessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.AvgAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
+                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.AvgAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
                         break;
                 }
             }

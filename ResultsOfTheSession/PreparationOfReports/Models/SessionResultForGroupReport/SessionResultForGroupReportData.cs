@@ -5,7 +5,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 {
     public class SessionResultForGroupReportData : ISessionResultForGroupReportData
     {
-        public List<SessionResultForGroupReportRawView> SessionResultForGroupRawViews { get; set; }
+        public IEnumerable<SessionResultForGroupReportRawView> SessionResultForGroupRawViews { get; set; }
 
         public string SessionInfo { get; set; }
 

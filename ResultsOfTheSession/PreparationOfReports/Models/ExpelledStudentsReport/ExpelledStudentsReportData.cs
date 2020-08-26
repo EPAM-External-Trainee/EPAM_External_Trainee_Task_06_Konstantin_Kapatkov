@@ -5,7 +5,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
     public class ExpelledStudentsReportData : IExpelledStudentsReportData
     {
-        public List<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }
+        public IEnumerable<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }
 
         public string AcademicYear { get; set; }
 

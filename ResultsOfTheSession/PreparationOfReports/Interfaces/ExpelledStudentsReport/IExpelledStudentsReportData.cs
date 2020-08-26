@@ -5,7 +5,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces.ExpelledStudentsRe
 {
     public interface IExpelledStudentsReportData
     {
-        List<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }
+        IEnumerable<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }
 
         string AcademicYear { get; set; }
 

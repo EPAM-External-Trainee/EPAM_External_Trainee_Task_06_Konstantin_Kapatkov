@@ -5,9 +5,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces.SessionResultWithG
 {
     public interface ISessionResultWithGroupMarksReportData
     {
-        List<SessionResultWithGroupMarksReportRawView> PrepareSessionResultWithGroupMarksRowViews { get; set; }
+        IEnumerable<SessionResultWithGroupMarksReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
 
-        string SessionInfo { get; set; }
+        string SessionName { get; set; }
+
+        string AcademicYear { get; set; }
 
         string[] Headers { get; set; }
     }

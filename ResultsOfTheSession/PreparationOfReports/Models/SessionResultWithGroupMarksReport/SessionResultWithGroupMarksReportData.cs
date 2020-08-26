@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using ResultsOfTheSession.PreparationOfReports.Interfaces.SessionResultWithGroupMarks;
+using System.Collections.Generic;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
 {
-    public class SessionResultWithGroupMarksReportData
+    public class SessionResultWithGroupMarksReportData : ISessionResultWithGroupMarksReportData
     {
-        public List<SessionResultWithGroupMarksReportRawView> PrepareSessionResultWithGroupMarksRowViews { get; set; }
+        public IEnumerable<SessionResultWithGroupMarksReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
 
         public string SessionName { get; set; }
 
