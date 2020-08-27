@@ -2,7 +2,7 @@
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
-    public class ExpelledStudentsReportRawView : IExpelledStudentsReportRowView
+    public struct ExpelledStudentsReportRawView : IExpelledStudentsReportRowView
     {
         public string Name { get; set; }
 

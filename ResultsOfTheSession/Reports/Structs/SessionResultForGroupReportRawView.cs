@@ -2,7 +2,7 @@
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport
 {
-    public class SessionResultForGroupReportRawView : ISessionResultForGroupReportRawView
+    public struct SessionResultForGroupReportRawView : ISessionResultForGroupReportRawView
     {
         public string Surname { get; set; }
 
