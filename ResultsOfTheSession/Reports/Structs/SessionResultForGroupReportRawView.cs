@@ -1,4 +1,5 @@
 ﻿using ResultsOfTheSession.PreparationOfReports.Interfaces;
+using System;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport
 {
@@ -17,5 +18,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
         public string Date { get; set; }
 
         public string Assessment { get; set; }
+
+        public override bool Equals(object obj) => obj is SessionResultForGroupReportRawView view && Surname == view.Surname && Name == view.Name && Patronymic == view.Patronymic && Subject == view.Subject && Form == view.Form && Date == view.Date && Assessment == view.Assessment;
+
+        public override int GetHashCode() => HashCode.Combine(Surname, Name, Patronymic, Subject, Form, Date, Assessment);
     }
 }

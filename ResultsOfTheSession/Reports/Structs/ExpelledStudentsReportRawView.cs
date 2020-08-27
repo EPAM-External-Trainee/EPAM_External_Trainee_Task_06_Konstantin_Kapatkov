@@ -1,4 +1,5 @@
 ﻿using ResultsOfTheSession.PreparationOfReports.Interfaces.ExpelledStudentsReport;
+using System;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
@@ -9,5 +10,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
         public string Surname { get; set; }
 
         public string Patronymic { get; set; }
+
+        public override bool Equals(object obj) => obj is ExpelledStudentsReportRawView view && Name == view.Name && Surname == view.Surname && Patronymic == view.Patronymic;
+
+        public override int GetHashCode() => HashCode.Combine(Name, Surname, Patronymic);
     }
 }
