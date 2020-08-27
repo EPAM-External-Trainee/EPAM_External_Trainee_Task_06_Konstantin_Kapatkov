@@ -30,7 +30,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 
         private string GetGroupInfo(int groupId) => Groups.Find(g => g.Id == groupId)?.Name;
 
-        public IEnumerable<SessionResultForGroupReportData> GetReportData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new SessionResultForGroupReportData(GetRowData(sessionId, groupId), GetSessionInfo(sessionId), GetGroupInfo(groupId))).ToList();
+        public IEnumerable<SessionResultForGroupReportData> GetReportData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new SessionResultForGroupReportData(GetRowData(sessionId, groupId), GetSessionInfo(sessionId), GetGroupInfo(groupId)));
 
         public IEnumerable<SessionResultForGroupReportData> GetReportData(int sessionId, Func<SessionResultForGroupReportRawView, object> predicate, bool isDescOrder = false)
         {

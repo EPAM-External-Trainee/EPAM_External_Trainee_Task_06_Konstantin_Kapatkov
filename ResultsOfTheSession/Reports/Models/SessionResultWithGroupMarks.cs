@@ -37,7 +37,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         private string GetSessionAcademicYear(int sessionId) => Sessions.Find(s => s.Id == sessionId).AcademicYear;
 
-        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData() => Sessions.Select(session => new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id))).ToList();
+        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData() => Sessions.Select(session => new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
 
         public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData(Func<SessionResultWithGroupMarksReportRawView, object> predicate, bool isDescOrder = false)
         {
