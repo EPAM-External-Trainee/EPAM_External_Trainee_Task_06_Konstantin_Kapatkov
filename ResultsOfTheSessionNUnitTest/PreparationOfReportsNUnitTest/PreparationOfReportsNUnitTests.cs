@@ -3,6 +3,7 @@ using ResultsOfTheSession.ExcelWorker;
 using ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport;
 using ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport;
+using ResultsOfTheSession.Reports.Enums;
 
 namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
 {
@@ -14,7 +15,7 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
         public void ReportSessionResultForGroup_Test()
         {
             SessionResultForGroup sessionResultForGroup = new SessionResultForGroup(_connectionString);
-            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2, sr => sr.Assessment, false), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
+            MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(2, SessionResultForGroupOrderBy.Assessment, true), @"..\..\..\..\ResultsOfTheSessionNUnitTest\PreparationOfReportsNUnitTest\Resources\SessionResultForGroup.xlsx");
         }
 
         [Test]

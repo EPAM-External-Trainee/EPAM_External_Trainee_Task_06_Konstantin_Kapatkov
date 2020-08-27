@@ -25,18 +25,18 @@ namespace ResultsOfTheSession.PreparationOfReports.Abstract
 
         public DaoFactory DaoFactory { get; set; }
 
-        public List<Session> Sessions { get; set; }
+        public IEnumerable<Session> Sessions { get; set; }
 
-        public List<SessionResult> SessionResults { get; set; }
+        public IEnumerable<SessionResult> SessionResults { get; set; }
 
-        public List<SessionSchedule> SessionSchedules { get; set; }
+        public IEnumerable<SessionSchedule> SessionSchedules { get; set; }
 
-        public List<Group> Groups { get; set; }
+        public IEnumerable<Group> Groups { get; set; }
 
-        public List<KnowledgeAssessmentForm> KnowledgeAssessmentForms { get; set; }
+        public IEnumerable<KnowledgeAssessmentForm> KnowledgeAssessmentForms { get; set; }
 
-        public List<Student> Students { get; set; }
+        public IEnumerable<Student> Students { get; set; }
 
-        public List<Subject> Subjects { get; set; }
+        public IEnumerable<Subject> Subjects { get; set; }
     }
 }

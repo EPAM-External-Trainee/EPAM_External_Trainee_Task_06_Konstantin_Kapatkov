@@ -9,18 +9,18 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces
     {
         DaoFactory DaoFactory { get; set; }
 
-        List<Session> Sessions { get; set; }
+        IEnumerable<Session> Sessions { get; set; }
 
-        List<SessionResult> SessionResults { get; set; }
+        IEnumerable<SessionResult> SessionResults { get; set; }
 
-        List<SessionSchedule> SessionSchedules { get; set; }
+        IEnumerable<SessionSchedule> SessionSchedules { get; set; }
 
-        List<Group> Groups { get; set; }
+        IEnumerable<Group> Groups { get; set; }
 
-        List<KnowledgeAssessmentForm> KnowledgeAssessmentForms { get; set; }
+        IEnumerable<KnowledgeAssessmentForm> KnowledgeAssessmentForms { get; set; }
 
-        List<Student> Students { get; set; }
+        IEnumerable<Student> Students { get; set; }
 
-        List<Subject> Subjects { get; set; }
+        IEnumerable<Subject> Subjects { get; set; }
     }
 }

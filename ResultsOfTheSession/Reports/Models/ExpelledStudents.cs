@@ -33,9 +33,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
             return result;
         }
 
-        private string GetAcademicYear(int sessionId) => Sessions.Find(s => s.Id == sessionId).AcademicYear;
+        private string GetAcademicYear(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).AcademicYear;
 
-        private string GetGroupInfo(int groupId) => Groups.Find(g => g.Id == groupId).Name;
+        private string GetGroupInfo(int groupId) => Groups.FirstOrDefault(g => g.Id == groupId).Name;
 
         public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new ExpelledStudentsReportData(GetRowData(sessionId, groupId).ToList(), GetAcademicYear(sessionId), GetGroupInfo(groupId)));
 

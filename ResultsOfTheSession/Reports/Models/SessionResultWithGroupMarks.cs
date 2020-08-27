@@ -29,13 +29,13 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
                 tmp.Add(myGroup.Name, groupMarks);
             }
 
-            result.AddRange(tmp.Select(t => new SessionResultWithGroupMarksReportRawView(t.Key, t.Value.Max(), t.Value.Min(), t.Value.Average())));
+            result.AddRange(tmp.Select(t => new SessionResultWithGroupMarksReportRawView(t.Key, t.Value.Max(), t.Value.Min(), Math.Round(t.Value.Average(), 1))));
             return result;
         }
 
-        private string GetSessionName(int sessionId) => Sessions.Find(s => s.Id == sessionId).Name;
+        private string GetSessionName(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).Name;
 
-        private string GetSessionAcademicYear(int sessionId) => Sessions.Find(s => s.Id == sessionId).AcademicYear;
+        private string GetSessionAcademicYear(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).AcademicYear;
 
         public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData() => Sessions.Select(session => new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
 
