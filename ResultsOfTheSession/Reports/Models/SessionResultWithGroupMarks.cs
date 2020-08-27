@@ -1,5 +1,4 @@
 ﻿using ResultsOfTheSession.PreparationOfReports.Abstract;
-using ResultsOfTheSession.PreparationOfReports.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +33,6 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
             return result;
         }
 
-        private IEnumerable<SessionResultWithGroupMarksReportRawView> OrderByData(IEnumerable<SessionResultWithGroupMarksReportRawView> data, Func<SessionResultWithGroupMarksReportRawView, object> predicate, bool isDescOrder) => !isDescOrder ? data.OrderBy(predicate) : data.OrderByDescending(predicate);
-
         private string GetSessionName(int sessionId) => Sessions.Find(s => s.Id == sessionId).Name;
 
         private string GetSessionAcademicYear(int sessionId) => Sessions.Find(s => s.Id == sessionId).AcademicYear;
@@ -46,32 +43,25 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
             foreach (var session in Sessions)
             {
-                result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = GetRowData(session.Id).ToList(), SessionName = Sessions.Find(s => s.Id == session.Id).Name, AcademicYear = Sessions.Find(s => s.Id == session.Id).AcademicYear });
+                result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
             }
 
             return result;
         }
 
-        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData(SessionResultWithGroupMarksReportOrderBy orderBy, bool descendingOrder = false)
+        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData(Func<SessionResultWithGroupMarksReportRawView, object> predicate, bool isDescOrder = false)
         {
             List<SessionResultWithGroupMarksReportData> result = new List<SessionResultWithGroupMarksReportData>();
 
             foreach (var session in Sessions)
             {
-                switch (orderBy)
+                if (!isDescOrder)
                 {
-                    case SessionResultWithGroupMarksReportOrderBy.GroupName:
-                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.GroupName, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
-                        break;
-                    case SessionResultWithGroupMarksReportOrderBy.MaxAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MaxAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
-                        break;
-                    case SessionResultWithGroupMarksReportOrderBy.MinAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.MinAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
-                        break;
-                    case SessionResultWithGroupMarksReportOrderBy.AverageAssessment:
-                        result.Add(new SessionResultWithGroupMarksReportData { SessionResultWithGroupMarksRowViews = OrderByData(GetRowData(session.Id), sr => sr.AvgAssessment, descendingOrder).ToList(), SessionName = GetSessionName(session.Id), AcademicYear = GetSessionAcademicYear(session.Id) });
-                        break;
+                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderBy(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
+                }
+                else
+                {
+                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderByDescending(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
                 }
             }
 
