@@ -37,16 +37,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 
         private string GetGroupInfo(int groupId) => Groups.Find(g => g.Id == groupId).Name;
 
-        public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId)
-        {
-            List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
-            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
-            {
-                result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).ToList(), GetAcademicYear(sessionId), GetGroupInfo(groupId)));
-            }
-
-            return result;
-        }
+        public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new ExpelledStudentsReportData(GetRowData(sessionId, groupId).ToList(), GetAcademicYear(sessionId), GetGroupInfo(groupId))).ToList();
 
         public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId, Func<ExpelledStudentsReportRawView, object> predicate, bool isDescOrder = false)
         {
