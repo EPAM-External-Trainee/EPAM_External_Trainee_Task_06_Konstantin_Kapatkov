@@ -7,12 +7,12 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 {
     public struct SessionResultForGroupReportData : ISessionResultForGroupReportData
     {
-        public SessionResultForGroupReportData(IEnumerable<SessionResultForGroupReportRawView> sessionResultForGroupRawViews, string sessionInfo, string groupName, string[] headers)
+        public SessionResultForGroupReportData(IEnumerable<SessionResultForGroupReportRawView> sessionResultForGroupRawViews, string sessionInfo, string groupName)
         {
             SessionResultForGroupRawViews = sessionResultForGroupRawViews;
             SessionInfo = sessionInfo;
             GroupName = groupName;
-            Headers = headers;
+            Headers = new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" };
         }
 
         public IEnumerable<SessionResultForGroupReportRawView> SessionResultForGroupRawViews { get; set; }

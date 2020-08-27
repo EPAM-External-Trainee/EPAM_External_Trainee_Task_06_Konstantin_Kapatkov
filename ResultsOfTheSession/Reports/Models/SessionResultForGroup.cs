@@ -35,7 +35,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             List<SessionResultForGroupReportData> result = new List<SessionResultForGroupReportData>();
             foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
-                result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" } ));
+                result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId), GetSessionInfo(sessionId), GetGroupInfo(groupId)));
             }
 
             return result;
@@ -48,11 +48,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             {
                 if (!isDescOrder)
                 {
-                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderBy(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
+                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderBy(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId)));
                 }
                 else
                 {
-                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
+                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId)));
                 }
             }
 

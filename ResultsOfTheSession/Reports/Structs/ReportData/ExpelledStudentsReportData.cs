@@ -7,12 +7,12 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
     public struct ExpelledStudentsReportData : IExpelledStudentsReportData
     {
-        public ExpelledStudentsReportData(IEnumerable<ExpelledStudentsReportRawView> expelledStudentsReportRawViews, string academicYear, string groupName, string[] headers)
+        public ExpelledStudentsReportData(IEnumerable<ExpelledStudentsReportRawView> expelledStudentsReportRawViews, string academicYear, string groupName)
         {
             ExpelledStudentsReportRawViews = expelledStudentsReportRawViews;
             AcademicYear = academicYear;
             GroupName = groupName;
-            Headers = headers;
+            Headers = new string[] { "Surname", "Name", "Patronymic" };
         }
 
         public IEnumerable<ExpelledStudentsReportRawView> ExpelledStudentsReportRawViews { get; set; }

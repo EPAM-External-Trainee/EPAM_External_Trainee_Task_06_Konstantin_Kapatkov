@@ -43,7 +43,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
             foreach (var session in Sessions)
             {
-                result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
+                result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
             }
 
             return result;
@@ -57,11 +57,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
             {
                 if (!isDescOrder)
                 {
-                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderBy(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
+                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderBy(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
                 }
                 else
                 {
-                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderByDescending(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id), new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" }));
+                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderByDescending(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
                 }
             }
 

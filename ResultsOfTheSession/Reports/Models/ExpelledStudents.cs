@@ -42,7 +42,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
             List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
             foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
-                result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).ToList(), GetAcademicYear(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic" }));
+                result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).ToList(), GetAcademicYear(sessionId), GetGroupInfo(groupId)));
             }
 
             return result;
@@ -55,11 +55,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
             {
                 if (!isDescOrder)
                 {
-                    result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).OrderBy(predicate), GetAcademicYear(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic" }));
+                    result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).OrderBy(predicate), GetAcademicYear(sessionId), GetGroupInfo(groupId)));
                 }
                 else
                 {
-                    result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetAcademicYear(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic" }));
+                    result.Add(new ExpelledStudentsReportData(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetAcademicYear(sessionId), GetGroupInfo(groupId)));
                 }
             }
             return result;
