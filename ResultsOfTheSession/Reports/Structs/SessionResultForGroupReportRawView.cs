@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 {
     public struct SessionResultForGroupReportRawView : ISessionResultForGroupReportRawView
     {
-        public string Surname { get; set; }
-
         public string Name { get; set; }
+
+        public string Surname { get; set; }
 
         public string Patronymic { get; set; }
 

@@ -12,39 +12,6 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
         {
         }
 
-        public List<ExpelledStudentsReportData> GetReportData(int sessionId)
-        {
-            List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
-            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
-            {
-                result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = GetRowData(sessionId, groupId).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
-            }
-
-            return result;
-        }
-
-        public List<ExpelledStudentsReportData> GetReportData(int sessionId, ExpelledStudentsReportOrderBy orderBy, bool descendingOrder = false)
-        {
-            List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
-            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
-            {
-                switch (orderBy)
-                {
-                    case ExpelledStudentsReportOrderBy.Surname:
-                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Surname, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
-                        break;
-                    case ExpelledStudentsReportOrderBy.Name:
-                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Name, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
-                        break;
-                    case ExpelledStudentsReportOrderBy.Patronymic:
-                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Patronymic, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
-                        break;
-                }
-            }
-
-            return result;
-        }
-
         private IEnumerable<ExpelledStudentsReportRawView> GetRowData(int sessionId, int groupId)
         {
             List<ExpelledStudentsReportRawView> result = new List<ExpelledStudentsReportRawView>();
@@ -72,5 +39,38 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
         private string GetGroupInfo(int groupId) => Groups.Find(g => g.Id == groupId).Name;
 
         private IEnumerable<ExpelledStudentsReportRawView> OrderByData(IEnumerable<ExpelledStudentsReportRawView> data, Func<ExpelledStudentsReportRawView, object> predicate, bool isDescOrder) => !isDescOrder ? data.OrderBy(predicate) : data.OrderByDescending(predicate);
+
+        public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId)
+        {
+            List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
+            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
+            {
+                result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = GetRowData(sessionId, groupId).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
+            }
+
+            return result;
+        }
+
+        public IEnumerable<ExpelledStudentsReportData> GetReportData(int sessionId, ExpelledStudentsReportOrderBy orderBy, bool descendingOrder = false)
+        {
+            List<ExpelledStudentsReportData> result = new List<ExpelledStudentsReportData>();
+            foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
+            {
+                switch (orderBy)
+                {
+                    case ExpelledStudentsReportOrderBy.Surname:
+                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Surname, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case ExpelledStudentsReportOrderBy.Name:
+                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Name, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                    case ExpelledStudentsReportOrderBy.Patronymic:
+                        result.Add(new ExpelledStudentsReportData { ExpelledStudentsReportRawViews = OrderByData(GetRowData(sessionId, groupId), sr => sr.Patronymic, descendingOrder).ToList(), AcademicYear = GetAcademicYear(sessionId), GroupName = GetGroupInfo(groupId) });
+                        break;
+                }
+            }
+
+            return result;
+        }
     }
 }
