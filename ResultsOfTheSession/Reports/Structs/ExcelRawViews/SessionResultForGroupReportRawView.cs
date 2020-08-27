@@ -5,6 +5,17 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 {
     public struct SessionResultForGroupReportRawView : ISessionResultForGroupReportRawView
     {
+        public SessionResultForGroupReportRawView(string name, string surname, string patronymic, string subject, string form, string date, string assessment)
+        {
+            Name = name;
+            Surname = surname;
+            Patronymic = patronymic;
+            Subject = subject;
+            Form = form;
+            Date = date;
+            Assessment = assessment;
+        }
+
         public string Name { get; set; }
 
         public string Surname { get; set; }

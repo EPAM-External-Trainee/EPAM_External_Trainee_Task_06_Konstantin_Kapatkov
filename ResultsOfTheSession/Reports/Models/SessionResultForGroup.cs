@@ -22,7 +22,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
                             join kaf in KnowledgeAssessmentForms on ss.KnowledgeAssessmentFormId equals kaf.Id
                             join g in Groups on st.GroupId equals g.Id
                             where ss.SubjectId == sr.SubjectId && ss.SessionId == sessionId && st.GroupId == groupId
-                            select new SessionResultForGroupReportRawView { Surname = st.Surname, Name = st.Name, Patronymic = st.Patronymic, Subject = s.Name, Form = kaf.Form, Date = ss.Date.ToShortDateString(), Assessment = sr.Assessment });
+                            select new SessionResultForGroupReportRawView(st.Name, st.Surname, st.Patronymic, s.Name, kaf.Form, ss.Date.ToShortDateString(), sr.Assessment ));
             return result;
         }
 
@@ -35,7 +35,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             List<SessionResultForGroupReportData> result = new List<SessionResultForGroupReportData>();
             foreach (int groupId in SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList())
             {
-                result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).ToList(), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" } ));
+                result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" } ));
             }
 
             return result;
@@ -48,11 +48,11 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             {
                 if (!isDescOrder)
                 {
-                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).ToList().OrderBy(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
+                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderBy(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
                 }
                 else
                 {
-                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).ToList().OrderByDescending(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
+                    result.Add(new SessionResultForGroupReportData(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetSessionInfo(sessionId), GetGroupInfo(groupId), new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" }));
                 }
             }
 

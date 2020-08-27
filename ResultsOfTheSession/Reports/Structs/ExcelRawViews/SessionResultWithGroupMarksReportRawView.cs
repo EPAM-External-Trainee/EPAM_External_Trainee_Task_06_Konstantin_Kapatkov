@@ -5,6 +5,14 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 {
     public struct SessionResultWithGroupMarksReportRawView : ISessionResultWithGroupMarksReportRawView
     {
+        public SessionResultWithGroupMarksReportRawView(string groupName, double maxAssessment, double minAssessment, double avgAssessment)
+        {
+            GroupName = groupName;
+            MaxAssessment = maxAssessment;
+            MinAssessment = minAssessment;
+            AvgAssessment = avgAssessment;
+        }
+
         public string GroupName { get; set; }
 
         public double MaxAssessment { get; set; }

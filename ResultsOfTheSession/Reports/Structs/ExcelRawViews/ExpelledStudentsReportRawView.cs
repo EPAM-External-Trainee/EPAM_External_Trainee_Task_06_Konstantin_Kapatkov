@@ -5,6 +5,8 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
     public struct ExpelledStudentsReportRawView : IExpelledStudentsReportRowView
     {
+        public ExpelledStudentsReportRawView(string name, string surname, string patronymic) => (Name, Surname, Patronymic) = (name, surname, patronymic);
+
         public string Name { get; set; }
 
         public string Surname { get; set; }

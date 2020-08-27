@@ -26,7 +26,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
                 double.TryParse(item.Assessment, out double assessment);
                 if (item.Assessment == "Not passed" || (assessment < 5 && assessment != 0))
                 {
-                    result.Add(new ExpelledStudentsReportRawView { Surname = item.Surname, Name = item.Name, Patronymic = item.Patronymic });
+                    result.Add(new ExpelledStudentsReportRawView(item.Name, item.Surname, item.Patronymic));
                 }
             }
 

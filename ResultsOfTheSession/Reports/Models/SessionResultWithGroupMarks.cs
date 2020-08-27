@@ -29,7 +29,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
                 tmp.Add(myGroup.Name, groupMarks);
             }
 
-            result.AddRange(tmp.Select(t => new SessionResultWithGroupMarksReportRawView { GroupName = t.Key, MaxAssessment = t.Value.Max(), MinAssessment = t.Value.Min(), AvgAssessment = t.Value.Average() }));
+            result.AddRange(tmp.Select(t => new SessionResultWithGroupMarksReportRawView(t.Key, t.Value.Max(), t.Value.Min(), t.Value.Average())));
             return result;
         }
 
