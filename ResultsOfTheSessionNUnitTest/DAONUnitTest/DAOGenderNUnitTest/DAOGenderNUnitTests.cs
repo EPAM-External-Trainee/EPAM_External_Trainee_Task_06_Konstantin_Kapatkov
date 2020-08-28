@@ -1,29 +1,23 @@
 using NUnit.Framework;
-using ResultsOfTheSession.DAO;
 using ResultsOfTheSession.DAO.Interfaces;
 using ResultsOfTheSession.ORM.Models;
+using ResultsOfTheSessionNUnitTest.DAONUnitTest;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ResultsOfTheSessionNUnitTest
 {
-    public class GenderNUnitTests
+    public class DAOGenderNUnitTests : DAOTest
     {
-        private const string _connectionString = @"Data Source=KONSTANTINPC\SQLEXPRESS; Initial Catalog=ResultSession; Integrated Security=true;";
-        private static readonly DaoFactory _daoFactory = DaoFactory.GetInstance(_connectionString);
-        private static readonly IDao<Gender> _daoGender = _daoFactory.GetGender();
-
-        [SetUp]
-        public void Setup()
-        {
-
-        }
+        private static readonly IDao<Gender> _daoGender = DaoFactoryTest.GetGender();
 
         [Test]
         public void CreateGender_Test()
         {
             Gender gender = new Gender("Unknown");
             bool result = Task.Run(async () => await _daoGender.CreateAsync(gender).ConfigureAwait(false)).Result;
+            Assert.AreEqual(gender.GenderType, Task.Run(async () => await _daoGender.ReadAllAsync().ConfigureAwait(false)).Result.Last().GenderType);
         }
 
         [Test]
