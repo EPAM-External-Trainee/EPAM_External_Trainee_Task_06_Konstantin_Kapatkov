@@ -13,5 +13,26 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
             ExpelledStudentsReport expelledStudents = new ExpelledStudentsReport(ConnectionString);
             MyExcelWorker.WriteToExcel(expelledStudents.GetReportData(sessionId), PathToExpelledStudentsExcelFile);
         }
+
+        [TestCase(1, false)]
+        public void ReportExpelledStudents_OrderByName_Test(int sessionId, bool descOrder)
+        {
+            ExpelledStudentsReport expelledStudents = new ExpelledStudentsReport(ConnectionString);
+            MyExcelWorker.WriteToExcel(expelledStudents.GetReportData(sessionId, r => r.Name, descOrder), PathToExpelledStudentsExcelFile);
+        }
+
+        [TestCase(1, true)]
+        public void ReportExpelledStudents_OrderBySurname_Test(int sessionId, bool descOrder)
+        {
+            ExpelledStudentsReport expelledStudents = new ExpelledStudentsReport(ConnectionString);
+            MyExcelWorker.WriteToExcel(expelledStudents.GetReportData(sessionId, r => r.Surname, descOrder), PathToExpelledStudentsExcelFile);
+        }
+
+        [TestCase(1, false)]
+        public void ReportExpelledStudents_OrderByPatronymic_Test(int sessionId, bool descOrder)
+        {
+            ExpelledStudentsReport expelledStudents = new ExpelledStudentsReport(ConnectionString);
+            MyExcelWorker.WriteToExcel(expelledStudents.GetReportData(sessionId, r => r.Patronymic, descOrder), PathToExpelledStudentsExcelFile);
+        }
     }
 }
