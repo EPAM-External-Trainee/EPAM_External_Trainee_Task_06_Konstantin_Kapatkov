@@ -17,13 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DAONUnitTest\DAOStudentNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOSessionNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOGroupNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOKnowledgeAssessmentFormNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOSubjectNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOSessionResultNUnitTest\" />
-    <Folder Include="DAONUnitTest\DAOSessionScheduleNUnitTest\" />
     <Folder Include="PreparationOfReportsNUnitTest\Resources\" />
   </ItemGroup>
 

@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models.Session
 {
     public class Session : ISession
     {
-        public Session(int id, string name, string academicYear) => (Id, Name, AcademicYear) = (id, name, academicYear);
-
         public Session(string name, string academicYear) => (Name, AcademicYear) = (name, academicYear);
+
+        public Session(int id, string name, string academicYear) => (Id, Name, AcademicYear) = (id, name, academicYear);
 
         public int Id { get; set; }
 

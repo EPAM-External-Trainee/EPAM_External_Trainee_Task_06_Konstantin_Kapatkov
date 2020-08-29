@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models
 {
     public class Group : IGroup
     {
-        public Group(int id, string name) => (Id, Name) = (id, name);
-
         public Group(string name) => Name = name;
+
+        public Group(int id, string name) => (Id, Name) = (id, name);
 
         public int Id { get; set; }
 

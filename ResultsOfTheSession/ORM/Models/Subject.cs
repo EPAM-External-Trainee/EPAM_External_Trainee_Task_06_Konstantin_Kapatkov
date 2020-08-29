@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models
 {
     public class Subject : ISubject
     {
-        public Subject(int id, string name) => (Id, Name) = (id, name);
-
         public Subject(string name) => Name = name;
+
+        public Subject(int id, string name) => (Id, Name) = (id, name);
 
         public int Id { get; set; }
 

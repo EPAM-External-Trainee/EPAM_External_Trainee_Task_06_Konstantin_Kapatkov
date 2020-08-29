@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using ResultsOfTheSession.DAO.Interfaces;
 using ResultsOfTheSession.ORM.Models;
 using ResultsOfTheSessionNUnitTest.DAONUnitTest;
 using System.Collections.Generic;
@@ -8,41 +7,47 @@ using System.Threading.Tasks;
 
 namespace ResultsOfTheSessionNUnitTest
 {
+    [TestFixture]
     public class DAOGenderNUnitTests : DAOTest
     {
-        private static readonly IDao<Gender> _daoGender = DaoFactoryTest.GetGender();
-
-        [Test]
-        public void CreateGender_Test()
+        [TestCase("Unknown")]
+        public void CreateGender_Test(string genderTypeName)
         {
-            Gender gender = new Gender("Unknown");
-            bool result = Task.Run(async () => await _daoGender.CreateAsync(gender).ConfigureAwait(false)).Result;
-            Assert.AreEqual(gender.GenderType, Task.Run(async () => await _daoGender.ReadAllAsync().ConfigureAwait(false)).Result.Last().GenderType);
+            Gender gender = new Gender(genderTypeName);
+            bool result = Task.Run(async () => await DaoFactoryTest.GetGender().CreateAsync(gender).ConfigureAwait(false)).Result;
+            Gender expectedGender = Task.Run(async () => await DaoFactoryTest.GetGender().ReadAllAsync().ConfigureAwait(false)).Result.Last();
+            Assert.AreEqual(gender.GenderType, expectedGender.GenderType);
+            Assert.IsTrue(result);
         }
 
-        [Test]
-        public void ReadGender_Test()
+        [TestCase(1, 1, "Man")]
+        public void ReadGender_Test(int id, int genderId, string genderTypeName)
         {
-            Gender gender = Task.Run(async () => await _daoGender.ReadAsync(1).ConfigureAwait(false)).Result;
+            Gender gender = Task.Run(async () => await DaoFactoryTest.GetGender().ReadAsync(id).ConfigureAwait(false)).Result;
+            Assert.AreEqual(gender, new Gender(genderId, genderTypeName));
         }
 
-        [Test]
-        public void UpdateGender_Test()
+        [TestCase(1, "Unknown")]
+        public void UpdateGender_Test(int id, string newGenderTypeName)
         {
-            Gender gender = new Gender(1, "Unknown");
-            bool result = Task.Run(async () => await _daoGender.UpdateAsync(gender).ConfigureAwait(false)).Result;
+            Gender gender = new Gender(id, newGenderTypeName);
+            bool result = Task.Run(async () => await DaoFactoryTest.GetGender().UpdateAsync(gender).ConfigureAwait(false)).Result;
+            Assert.AreEqual(gender, Task.Run(async () => await DaoFactoryTest.GetGender().ReadAsync(id).ConfigureAwait(false)).Result);
+            Assert.IsTrue(result);
         }
 
-        [Test]
-        public void DeleteGender_Test()
+        [TestCase(1)]
+        public void DeleteGender_Test(int id)
         {
-            bool result = Task.Run(async () => await _daoGender.DeleteAsync(3).ConfigureAwait(false)).Result;
+            bool result = Task.Run(async () => await DaoFactoryTest.GetGender().DeleteAsync(id).ConfigureAwait(false)).Result;
+            Assert.IsNull(Task.Run(async () => await DaoFactoryTest.GetGender().ReadAsync(id).ConfigureAwait(false)).Result);
         }
 
         [Test]
         public void ReadAllGender_Test()
         {
-           IEnumerable<Gender> result = Task.Run(async () => await _daoGender.ReadAllAsync().ConfigureAwait(false)).Result;
+           IEnumerable<Gender> result = Task.Run(async () => await DaoFactoryTest.GetGender().ReadAllAsync().ConfigureAwait(false)).Result;
+           Assert.IsTrue(result != null && result.Count() != 0);
         }
     }
 }

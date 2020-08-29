@@ -5,9 +5,10 @@ namespace ResultsOfTheSession.ORM.Models.Session
 {
     public class SessionSchedule : ISessionSchedule
     {
-        public SessionSchedule(int id, int sessionId, int groupId, int subjectId, DateTime date, int knowledgeAssessmentFormId) => (Id, SessionId, GroupId, SubjectId, Date, KnowledgeAssessmentFormId) = (id, sessionId, groupId, subjectId, date, knowledgeAssessmentFormId);
-
+      
         public SessionSchedule(int sessionId, int groupId, int subjectId, DateTime date, int knowledgeAssessmentFormId) => (SessionId, GroupId, SubjectId, Date, KnowledgeAssessmentFormId) = (sessionId, groupId, subjectId, date, knowledgeAssessmentFormId);
+
+        public SessionSchedule(int id, int sessionId, int groupId, int subjectId, DateTime date, int knowledgeAssessmentFormId) => (Id, SessionId, GroupId, SubjectId, Date, KnowledgeAssessmentFormId) = (id, sessionId, groupId, subjectId, date, knowledgeAssessmentFormId);
 
         public int Id { get; set; }
 

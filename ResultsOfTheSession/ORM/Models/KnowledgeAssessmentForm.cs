@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models
 {
     public class KnowledgeAssessmentForm : IKnowledgeAssessmentForm
     {
-        public KnowledgeAssessmentForm(int id, string form) => (Id, Form) = (id, form);
-
         public KnowledgeAssessmentForm(string form) => Form = form;
+
+        public KnowledgeAssessmentForm(int id, string form) => (Id, Form) = (id, form);
 
         public int Id { get; set; }
 

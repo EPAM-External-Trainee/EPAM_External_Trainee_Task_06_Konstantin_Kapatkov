@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models
 {
     public class Student : IStudent
     {
-        public Student(int id, string name, string surname, string patronymic, int genderId, DateTime birthday, int groupId) => (Id, Name, Surname, Patronymic, GenderId, Birthday, GroupId) = (id, name, surname, patronymic, genderId, birthday, groupId);
-
         public Student(string name, string surname, string patronymic, int genderId, DateTime birthday, int groupId) => (Name, Surname, Patronymic, GenderId, Birthday, GroupId) = (name, surname, patronymic, genderId, birthday, groupId);
+
+        public Student(int id, string name, string surname, string patronymic, int genderId, DateTime birthday, int groupId) => (Id, Name, Surname, Patronymic, GenderId, Birthday, GroupId) = (id, name, surname, patronymic, genderId, birthday, groupId);
 
         public int Id { get; set; }
 
@@ -17,9 +17,9 @@ namespace ResultsOfTheSession.ORM.Models
 
         public string Patronymic { get; set; }
 
-        public int GenderId { get; set; }
-
         public DateTime Birthday { get; set; }
+
+        public int GenderId { get; set; }
 
         public int GroupId { get; set; }
 

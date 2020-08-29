@@ -5,9 +5,9 @@ namespace ResultsOfTheSession.ORM.Models
 {
     public class Gender : IGender
     {
-        public Gender(int id, string gednerType) => (Id, GenderType) = (id, gednerType);
-
         public Gender(string gednerType) => GenderType = gednerType;
+
+        public Gender(int id, string gednerType) => (Id, GenderType) = (id, gednerType);
 
         public int Id { get; set; }
 
