@@ -3,9 +3,9 @@ using System;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
 {
-    public struct SessionResultWithGroupMarksReportRawView : ISessionResultWithGroupMarksReportRawView
+    public struct GroupSessionResultReportRawView : IGroupSessionResultReportRawView
     {
-        public SessionResultWithGroupMarksReportRawView(string groupName, double maxAssessment, double minAssessment, double avgAssessment)
+        public GroupSessionResultReportRawView(string groupName, double maxAssessment, double minAssessment, double avgAssessment)
         {
             GroupName = groupName;
             MaxAssessment = maxAssessment;
@@ -21,7 +21,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         public double AvgAssessment { get; set; }
 
-        public override bool Equals(object obj) => obj is SessionResultWithGroupMarksReportRawView view && GroupName == view.GroupName && MaxAssessment == view.MaxAssessment && MinAssessment == view.MinAssessment && AvgAssessment == view.AvgAssessment;
+        public override bool Equals(object obj) => obj is GroupSessionResultReportRawView view && GroupName == view.GroupName && MaxAssessment == view.MaxAssessment && MinAssessment == view.MinAssessment && AvgAssessment == view.AvgAssessment;
 
         public override int GetHashCode() => HashCode.Combine(GroupName, MaxAssessment, MinAssessment, AvgAssessment);
     }

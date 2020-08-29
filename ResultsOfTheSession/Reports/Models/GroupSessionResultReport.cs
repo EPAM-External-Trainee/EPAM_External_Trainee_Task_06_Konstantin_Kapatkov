@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
 {
-    public class SessionResultWithGroupMarks : Report
+    public class GroupSessionResultReport : Report
     {
-        public SessionResultWithGroupMarks(string connectionString) : base(connectionString)
+        public GroupSessionResultReport(string connectionString) : base(connectionString)
         {
         }
 
-        private IEnumerable<SessionResultWithGroupMarksReportRawView> GetRowData(int sessionId)
+        private IEnumerable<GroupSessionResultReportRawView> GetRowData(int sessionId)
         {
-            List<SessionResultWithGroupMarksReportRawView> result = new List<SessionResultWithGroupMarksReportRawView>();
+            List<GroupSessionResultReportRawView> result = new List<GroupSessionResultReportRawView>();
             Dictionary<string, List<double>> tmp = new Dictionary<string, List<double>>();
 
             foreach (var myGroup in Groups)
@@ -29,7 +29,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
                 tmp.Add(myGroup.Name, groupMarks);
             }
 
-            result.AddRange(tmp.Select(t => new SessionResultWithGroupMarksReportRawView(t.Key, t.Value.Max(), t.Value.Min(), Math.Round(t.Value.Average(), 1))));
+            result.AddRange(tmp.Select(t => new GroupSessionResultReportRawView(t.Key, t.Value.Max(), t.Value.Min(), Math.Round(t.Value.Average(), 1))));
             return result;
         }
 
@@ -37,21 +37,21 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         private string GetSessionAcademicYear(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).AcademicYear;
 
-        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData() => Sessions.Select(session => new SessionResultWithGroupMarksReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
+        public IEnumerable<GroupSessionResultReportData> GetReportData() => Sessions.Select(session => new GroupSessionResultReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
 
-        public IEnumerable<SessionResultWithGroupMarksReportData> GetReportData(Func<SessionResultWithGroupMarksReportRawView, object> predicate, bool isDescOrder = false)
+        public IEnumerable<GroupSessionResultReportData> GetReportData(Func<GroupSessionResultReportRawView, object> predicate, bool isDescOrder = false)
         {
-            List<SessionResultWithGroupMarksReportData> result = new List<SessionResultWithGroupMarksReportData>();
+            List<GroupSessionResultReportData> result = new List<GroupSessionResultReportData>();
 
             foreach (var session in Sessions)
             {
                 if (!isDescOrder)
                 {
-                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderBy(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
+                    result.Add(new GroupSessionResultReportData(GetRowData(session.Id).OrderBy(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
                 }
                 else
                 {
-                    result.Add(new SessionResultWithGroupMarksReportData(GetRowData(session.Id).OrderByDescending(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
+                    result.Add(new GroupSessionResultReportData(GetRowData(session.Id).OrderByDescending(predicate), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
                 }
             }
 

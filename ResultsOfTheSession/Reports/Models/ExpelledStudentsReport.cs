@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.ExpelledStudentsReport
 {
-    public class ExpelledStudents : Report
+    public class ExpelledStudentsReport : Report
     {
-        public ExpelledStudents(string connectionString) : base(connectionString)
+        public ExpelledStudentsReport(string connectionString) : base(connectionString)
         {
         }
 

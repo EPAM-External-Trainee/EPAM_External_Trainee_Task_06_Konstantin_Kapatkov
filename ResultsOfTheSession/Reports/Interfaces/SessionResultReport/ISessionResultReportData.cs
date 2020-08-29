@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ResultsOfTheSession.PreparationOfReports.Interfaces
 {
-    public interface ISessionResultForGroupReportData
+    public interface ISessionResultReportData
     {
-        IEnumerable<SessionResultForGroupReportRawView> SessionResultForGroupRawViews { get; set; }
+        IEnumerable<SessionResultReportRawView> SessionResultForGroupRawViews { get; set; }
 
         string SessionInfo { get; set; }
 

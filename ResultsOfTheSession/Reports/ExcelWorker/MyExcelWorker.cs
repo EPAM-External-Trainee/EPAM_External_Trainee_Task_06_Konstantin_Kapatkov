@@ -12,7 +12,7 @@ namespace ResultsOfTheSession.ExcelWorker
 {
     public static class MyExcelWorker
     {
-        public static void WriteToExcel(IEnumerable<SessionResultForGroupReportData> dataToWrite, string filePath)
+        public static void WriteToExcel(IEnumerable<SessionResultReportData> dataToWrite, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
@@ -43,13 +43,13 @@ namespace ResultsOfTheSession.ExcelWorker
 
                 for (int i = ++currentRow, j = 0; j < data.SessionResultForGroupRawViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Surname;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Name;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Patronymic;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Subject;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Form;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Date;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultForGroupRawViews.ToList()[--j].Assessment;
+                    workSheet.Cells[i, 1].Value = data.SessionResultForGroupRawViews.ToList()[j].Surname;
+                    workSheet.Cells[i, 2].Value = data.SessionResultForGroupRawViews.ToList()[j].Name;
+                    workSheet.Cells[i, 3].Value = data.SessionResultForGroupRawViews.ToList()[j].Patronymic;
+                    workSheet.Cells[i, 4].Value = data.SessionResultForGroupRawViews.ToList()[j].Subject;
+                    workSheet.Cells[i, 5].Value = data.SessionResultForGroupRawViews.ToList()[j].Form;
+                    workSheet.Cells[i, 6].Value = data.SessionResultForGroupRawViews.ToList()[j].Date;
+                    workSheet.Cells[i, 7].Value = data.SessionResultForGroupRawViews.ToList()[j].Assessment;
                 }
 
                 SetBorder(excel, workSheet, data.GroupName);
@@ -64,7 +64,7 @@ namespace ResultsOfTheSession.ExcelWorker
             workSheet.Dispose();
         }
 
-        public static void WriteToExcel(IEnumerable<SessionResultWithGroupMarksReportData> dataToWrite, string filePath)
+        public static void WriteToExcel(IEnumerable<GroupSessionResultReportData> dataToWrite, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             ExcelPackage excel = new ExcelPackage();
@@ -90,10 +90,10 @@ namespace ResultsOfTheSession.ExcelWorker
 
                 for (int i = ++currentRow, j = 0; j < data.SessionResultWithGroupMarksRowViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, ++j].Value = data.SessionResultWithGroupMarksRowViews.ToList()[--j].GroupName;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultWithGroupMarksRowViews.ToList()[--j].MaxAssessment;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultWithGroupMarksRowViews.ToList()[--j].MinAssessment;
-                    workSheet.Cells[i, ++j].Value = data.SessionResultWithGroupMarksRowViews.ToList()[--j].AvgAssessment;
+                    workSheet.Cells[i, 1].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].GroupName;
+                    workSheet.Cells[i, 2].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].MaxAssessment;
+                    workSheet.Cells[i, 3].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].MinAssessment;
+                    workSheet.Cells[i, 4].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].AvgAssessment;
                 }
 
                 SetBorder(excel, workSheet, data.AcademicYear);
@@ -134,9 +134,9 @@ namespace ResultsOfTheSession.ExcelWorker
 
                 for (int i = ++currentRow, j = 0; j < data.ExpelledStudentsReportRawViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, ++j].Value = data.ExpelledStudentsReportRawViews.ToList()[--j].Surname;
-                    workSheet.Cells[i, ++j].Value = data.ExpelledStudentsReportRawViews.ToList()[--j].Name;
-                    workSheet.Cells[i, ++j].Value = data.ExpelledStudentsReportRawViews.ToList()[--j].Patronymic;
+                    workSheet.Cells[i, 1].Value = data.ExpelledStudentsReportRawViews.ToList()[j].Surname;
+                    workSheet.Cells[i, 2].Value = data.ExpelledStudentsReportRawViews.ToList()[j].Name;
+                    workSheet.Cells[i, 3].Value = data.ExpelledStudentsReportRawViews.ToList()[j].Patronymic;
                 }
 
                 SetBorder(excel, workSheet, data.GroupName);

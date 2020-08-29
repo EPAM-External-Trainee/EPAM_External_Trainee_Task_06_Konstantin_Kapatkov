@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest
         [TestCase(1)]
         public void ReportExpelledStudents_Test(int sessionId)
         {
-            ExpelledStudents expelledStudents = new ExpelledStudents(ConnectionString);
+            ExpelledStudentsReport expelledStudents = new ExpelledStudentsReport(ConnectionString);
             MyExcelWorker.WriteToExcel(expelledStudents.GetReportData(sessionId), PathToExpelledStudentsExcelFile);
         }
     }

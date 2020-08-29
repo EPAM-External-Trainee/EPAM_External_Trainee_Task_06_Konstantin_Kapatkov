@@ -1,6 +1,6 @@
 ﻿namespace ResultsOfTheSession.PreparationOfReports.Interfaces
 {
-    public interface ISessionResultForGroupReportRawView
+    public interface ISessionResultReportRawView
     {
         string Surname { get; set; }
 

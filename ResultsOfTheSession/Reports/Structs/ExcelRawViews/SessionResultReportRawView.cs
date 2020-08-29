@@ -3,9 +3,9 @@ using System;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport
 {
-    public struct SessionResultForGroupReportRawView : ISessionResultForGroupReportRawView
+    public struct SessionResultReportRawView : ISessionResultReportRawView
     {
-        public SessionResultForGroupReportRawView(string name, string surname, string patronymic, string subject, string form, string date, string assessment)
+        public SessionResultReportRawView(string name, string surname, string patronymic, string subject, string form, string date, string assessment)
         {
             Name = name;
             Surname = surname;
@@ -30,7 +30,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 
         public string Assessment { get; set; }
 
-        public override bool Equals(object obj) => obj is SessionResultForGroupReportRawView view && Surname == view.Surname && Name == view.Name && Patronymic == view.Patronymic && Subject == view.Subject && Form == view.Form && Date == view.Date && Assessment == view.Assessment;
+        public override bool Equals(object obj) => obj is SessionResultReportRawView view && Surname == view.Surname && Name == view.Name && Patronymic == view.Patronymic && Subject == view.Subject && Form == view.Form && Date == view.Date && Assessment == view.Assessment;
 
         public override int GetHashCode() => HashCode.Combine(Surname, Name, Patronymic, Subject, Form, Date, Assessment);
     }

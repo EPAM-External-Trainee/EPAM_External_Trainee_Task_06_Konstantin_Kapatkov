@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroupMarksReport
 {
-    public struct SessionResultWithGroupMarksReportData : ISessionResultWithGroupMarksReportData
+    public struct GroupSessionResultReportData : IGroupSessionResultReportData
     {
-        public SessionResultWithGroupMarksReportData(IEnumerable<SessionResultWithGroupMarksReportRawView> sessionResultWithGroupMarksRowViews, string sessionName, string academicYear)
+        public GroupSessionResultReportData(IEnumerable<GroupSessionResultReportRawView> sessionResultWithGroupMarksRowViews, string sessionName, string academicYear)
         {
             SessionResultWithGroupMarksRowViews = sessionResultWithGroupMarksRowViews;
             SessionName = sessionName;
@@ -15,7 +15,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
             Headers = new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" };
         }
 
-        public IEnumerable<SessionResultWithGroupMarksReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
+        public IEnumerable<GroupSessionResultReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
 
         public string SessionName { get; set; }
 
@@ -23,7 +23,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         public string[] Headers { get; set; }
 
-        public override bool Equals(object obj) => obj is SessionResultWithGroupMarksReportData data && SessionResultWithGroupMarksRowViews.SequenceEqual(data.SessionResultWithGroupMarksRowViews) && SessionName == data.SessionName && AcademicYear == data.AcademicYear && Headers.SequenceEqual(data.Headers);
+        public override bool Equals(object obj) => obj is GroupSessionResultReportData data && SessionResultWithGroupMarksRowViews.SequenceEqual(data.SessionResultWithGroupMarksRowViews) && SessionName == data.SessionName && AcademicYear == data.AcademicYear && Headers.SequenceEqual(data.Headers);
 
         public override int GetHashCode() => HashCode.Combine(SessionResultWithGroupMarksRowViews, SessionName, AcademicYear, Headers);
     }

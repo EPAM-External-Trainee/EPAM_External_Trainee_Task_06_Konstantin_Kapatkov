@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest.SessionResu
         [Test]
         public void ReportWithGroupMarks_Test()
         {
-            SessionResultWithGroupMarks reportWithGroupMarks = new SessionResultWithGroupMarks(ConnectionString);
+            GroupSessionResultReport reportWithGroupMarks = new GroupSessionResultReport(ConnectionString);
             MyExcelWorker.WriteToExcel(reportWithGroupMarks.GetReportData(p => p.MaxAssessment, true), PathToSessionResultWithGroupMarksExcelFile);
         }
     }

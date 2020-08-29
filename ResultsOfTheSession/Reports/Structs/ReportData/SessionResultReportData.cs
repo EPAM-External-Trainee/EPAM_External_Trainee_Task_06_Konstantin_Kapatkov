@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupReport
 {
-    public struct SessionResultForGroupReportData : ISessionResultForGroupReportData
+    public struct SessionResultReportData : ISessionResultReportData
     {
-        public SessionResultForGroupReportData(IEnumerable<SessionResultForGroupReportRawView> sessionResultForGroupRawViews, string sessionInfo, string groupName)
+        public SessionResultReportData(IEnumerable<SessionResultReportRawView> sessionResultForGroupRawViews, string sessionInfo, string groupName)
         {
             SessionResultForGroupRawViews = sessionResultForGroupRawViews;
             SessionInfo = sessionInfo;
@@ -15,7 +15,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
             Headers = new string[] { "Surname", "Name", "Patronymic", "Subject", "Form", "Date", "Assessment" };
         }
 
-        public IEnumerable<SessionResultForGroupReportRawView> SessionResultForGroupRawViews { get; set; }
+        public IEnumerable<SessionResultReportRawView> SessionResultForGroupRawViews { get; set; }
 
         public string SessionInfo { get; set; }
 
@@ -23,7 +23,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupR
 
         public string[] Headers { get; set; }
 
-        public override bool Equals(object obj) => obj is SessionResultForGroupReportData data && SessionResultForGroupRawViews.SequenceEqual(data.SessionResultForGroupRawViews) && SessionInfo == data.SessionInfo && GroupName == data.GroupName && Headers.SequenceEqual(data.Headers);
+        public override bool Equals(object obj) => obj is SessionResultReportData data && SessionResultForGroupRawViews.SequenceEqual(data.SessionResultForGroupRawViews) && SessionInfo == data.SessionInfo && GroupName == data.GroupName && Headers.SequenceEqual(data.Headers);
 
         public override int GetHashCode() => HashCode.Combine(SessionResultForGroupRawViews, SessionInfo, GroupName, Headers);
     }

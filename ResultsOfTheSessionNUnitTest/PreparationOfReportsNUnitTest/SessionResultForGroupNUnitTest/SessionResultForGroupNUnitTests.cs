@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest.SessionResu
         [TestCase(2)]
         public void ReportSessionResultForGroup_Test(int sessionId)
         {
-            SessionResultForGroup sessionResultForGroup = new SessionResultForGroup(ConnectionString);
+            SessionResultReport sessionResultForGroup = new SessionResultReport(ConnectionString);
             MyExcelWorker.WriteToExcel(sessionResultForGroup.GetReportData(sessionId, s => s.Assessment, false), PathToSessionResultForGroupExcelFile);
         }
     }
