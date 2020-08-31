@@ -7,8 +7,8 @@
 3. the results of the session are known for each student.
 * Implement a class hierarchy and ORM for this database.
 * Implement CRUD using ADO.NET and reflection.
-* Provide for saving the session results for each session to an xlsx file group as a table.
-* For each session, output an xlsx pivot table with average/minimum / maximum score for each group.
+* Provide for saving the session results for each session to an .xlsx file group as a table.
+* For each session, output an .xlsx pivot table with average / minimum / maximum score for each group.
 * Create a list of students to be expelled, grouped by group.
 * When generating reports, consider the possibility of various sorts.
 * Develop unit tests for testing the generated classes.
