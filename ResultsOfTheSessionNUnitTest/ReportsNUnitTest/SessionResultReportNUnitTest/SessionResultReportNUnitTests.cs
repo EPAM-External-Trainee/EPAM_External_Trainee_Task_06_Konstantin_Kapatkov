@@ -5,7 +5,7 @@ using ResultsOfTheSession.PreparationOfReports.Models.SessionResultForGroupRepor
 namespace ResultsOfTheSessionNUnitTest.PreparationOfReportsNUnitTest.SessionResultForGroupNUnitTest
 {
     [TestFixture]
-    public class SessionResultForGroupNUnitTests : PreparationOfReports
+    public class SessionResultReportNUnitTests : PreparationOfReports
     {
         [TestCase(1)]
         public void ReportSessionResultForGroup_Test(int sessionId)
