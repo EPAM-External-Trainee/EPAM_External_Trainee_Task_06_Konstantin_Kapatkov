@@ -8,6 +8,6 @@
 
         protected const string PathToSessionResultForGroupExcelFile = @"..\..\..\..\ResultsOfTheSessionNUnitTest\ReportsNUnitTest\Resources\SessionResultReport.xlsx";
 
-        protected const string PathToSessionResultWithGroupMarksExcelFile = @"..\..\..\..\ResultsOfTheSessionNUnitTest\ReportsNUnitTest\Resources\GroupSessionResult.xlsx";
+        protected const string PathToSessionResultWithGroupMarksExcelFile = @"..\..\..\..\ResultsOfTheSessionNUnitTest\ReportsNUnitTest\Resources\GroupSessionResultReport.xlsx";
     }
 }
