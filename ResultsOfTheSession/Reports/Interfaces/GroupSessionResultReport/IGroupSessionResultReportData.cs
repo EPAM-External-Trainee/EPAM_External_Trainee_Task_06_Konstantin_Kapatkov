@@ -5,7 +5,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces.SessionResultWithG
 {
     public interface IGroupSessionResultReportData
     {
-        IEnumerable<GroupSessionResultReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
+        IEnumerable<GroupSessionResultReportRawView> GroupSessionResultReportRowViews { get; set; }
 
         string SessionName { get; set; }
 

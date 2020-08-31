@@ -12,6 +12,30 @@ namespace ResultsOfTheSession.ExcelWorker
 {
     public static class MyExcelWorker
     {
+        private static void SetBorder(ExcelPackage excel, ExcelWorksheet workSheet, string workSheetName)
+        {
+            workSheet = excel.Workbook.Worksheets[workSheetName];
+            workSheet.Cells[workSheet.Dimension.Address].AutoFitColumns();
+            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+        }
+
+        private static void SetWorkSheetStyle(ExcelWorksheet workSheet)
+        {
+            workSheet.TabColor = Color.Black;
+            workSheet.DefaultRowHeight = 12;
+            workSheet.DefaultColWidth = 20;
+        }
+
+        private static void SetRowStyle(ExcelRow row)
+        {
+            row.Height = 20;
+            row.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            row.Style.Font.Bold = true;
+        }
+
         public static void WriteToExcel(IEnumerable<SessionResultReportData> dataToWrite, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -41,15 +65,15 @@ namespace ResultsOfTheSession.ExcelWorker
                     workSheet.Cells[currentRow, ++i].Value = data.Headers[--i];
                 }
 
-                for (int i = ++currentRow, j = 0; j < data.SessionResultForGroupRawViews.Count(); i++, j++)
+                for (int i = ++currentRow, j = 0; j < data.SessionResultReportRawViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, 1].Value = data.SessionResultForGroupRawViews.ToList()[j].Surname;
-                    workSheet.Cells[i, 2].Value = data.SessionResultForGroupRawViews.ToList()[j].Name;
-                    workSheet.Cells[i, 3].Value = data.SessionResultForGroupRawViews.ToList()[j].Patronymic;
-                    workSheet.Cells[i, 4].Value = data.SessionResultForGroupRawViews.ToList()[j].Subject;
-                    workSheet.Cells[i, 5].Value = data.SessionResultForGroupRawViews.ToList()[j].Form;
-                    workSheet.Cells[i, 6].Value = data.SessionResultForGroupRawViews.ToList()[j].Date;
-                    workSheet.Cells[i, 7].Value = data.SessionResultForGroupRawViews.ToList()[j].Assessment;
+                    workSheet.Cells[i, 1].Value = data.SessionResultReportRawViews.ToList()[j].Surname;
+                    workSheet.Cells[i, 2].Value = data.SessionResultReportRawViews.ToList()[j].Name;
+                    workSheet.Cells[i, 3].Value = data.SessionResultReportRawViews.ToList()[j].Patronymic;
+                    workSheet.Cells[i, 4].Value = data.SessionResultReportRawViews.ToList()[j].Subject;
+                    workSheet.Cells[i, 5].Value = data.SessionResultReportRawViews.ToList()[j].Form;
+                    workSheet.Cells[i, 6].Value = data.SessionResultReportRawViews.ToList()[j].Date;
+                    workSheet.Cells[i, 7].Value = data.SessionResultReportRawViews.ToList()[j].Assessment;
                 }
 
                 SetBorder(excel, workSheet, data.GroupName);
@@ -88,12 +112,12 @@ namespace ResultsOfTheSession.ExcelWorker
                     workSheet.Cells[currentRow, ++i].Value = data.Headers[--i];
                 }
 
-                for (int i = ++currentRow, j = 0; j < data.SessionResultWithGroupMarksRowViews.Count(); i++, j++)
+                for (int i = ++currentRow, j = 0; j < data.GroupSessionResultReportRowViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, 1].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].GroupName;
-                    workSheet.Cells[i, 2].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].MaxAssessment;
-                    workSheet.Cells[i, 3].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].MinAssessment;
-                    workSheet.Cells[i, 4].Value = data.SessionResultWithGroupMarksRowViews.ToList()[j].AvgAssessment;
+                    workSheet.Cells[i, 1].Value = data.GroupSessionResultReportRowViews.ToList()[j].GroupName;
+                    workSheet.Cells[i, 2].Value = data.GroupSessionResultReportRowViews.ToList()[j].MaxAssessment;
+                    workSheet.Cells[i, 3].Value = data.GroupSessionResultReportRowViews.ToList()[j].MinAssessment;
+                    workSheet.Cells[i, 4].Value = data.GroupSessionResultReportRowViews.ToList()[j].AvgAssessment;
                 }
 
                 SetBorder(excel, workSheet, data.AcademicYear);
@@ -149,30 +173,6 @@ namespace ResultsOfTheSession.ExcelWorker
 
             excel.Dispose();
             workSheet.Dispose();
-        }
-
-        private static void SetBorder(ExcelPackage excel, ExcelWorksheet workSheet, string workSheetName)
-        {
-            workSheet = excel.Workbook.Worksheets[workSheetName];
-            workSheet.Cells[workSheet.Dimension.Address].AutoFitColumns();
-            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Top.Style = ExcelBorderStyle.Thin;
-            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Left.Style = ExcelBorderStyle.Thin;
-            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Right.Style = ExcelBorderStyle.Thin;
-            workSheet.Cells[workSheet.Dimension.Address].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-        }
-
-        private static void SetWorkSheetStyle(ExcelWorksheet workSheet)
-        {
-            workSheet.TabColor = Color.Black;
-            workSheet.DefaultRowHeight = 12;
-            workSheet.DefaultColWidth = 20;
-        }
-
-        private static void SetRowStyle(ExcelRow row)
-        {
-            row.Height = 20;
-            row.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            row.Style.Font.Bold = true;
         }
     }
 }

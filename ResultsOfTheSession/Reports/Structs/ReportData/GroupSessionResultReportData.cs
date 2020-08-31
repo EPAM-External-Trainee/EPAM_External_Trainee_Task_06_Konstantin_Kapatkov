@@ -9,13 +9,13 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
     {
         public GroupSessionResultReportData(IEnumerable<GroupSessionResultReportRawView> sessionResultWithGroupMarksRowViews, string sessionName, string academicYear)
         {
-            SessionResultWithGroupMarksRowViews = sessionResultWithGroupMarksRowViews;
+            GroupSessionResultReportRowViews = sessionResultWithGroupMarksRowViews;
             SessionName = sessionName;
             AcademicYear = academicYear;
             Headers = new string[] { "Group name", "Max assessment", "Min assessment", "Average assessment" };
         }
 
-        public IEnumerable<GroupSessionResultReportRawView> SessionResultWithGroupMarksRowViews { get; set; }
+        public IEnumerable<GroupSessionResultReportRawView> GroupSessionResultReportRowViews { get; set; }
 
         public string SessionName { get; set; }
 
@@ -23,8 +23,8 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         public string[] Headers { get; set; }
 
-        public override bool Equals(object obj) => obj is GroupSessionResultReportData data && SessionResultWithGroupMarksRowViews.SequenceEqual(data.SessionResultWithGroupMarksRowViews) && SessionName == data.SessionName && AcademicYear == data.AcademicYear && Headers.SequenceEqual(data.Headers);
+        public override bool Equals(object obj) => obj is GroupSessionResultReportData data && GroupSessionResultReportRowViews.SequenceEqual(data.GroupSessionResultReportRowViews) && SessionName == data.SessionName && AcademicYear == data.AcademicYear && Headers.SequenceEqual(data.Headers);
 
-        public override int GetHashCode() => HashCode.Combine(SessionResultWithGroupMarksRowViews, SessionName, AcademicYear, Headers);
+        public override int GetHashCode() => HashCode.Combine(GroupSessionResultReportRowViews, SessionName, AcademicYear, Headers);
     }
 }

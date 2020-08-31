@@ -5,7 +5,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces
 {
     public interface ISessionResultReportData
     {
-        IEnumerable<SessionResultReportRawView> SessionResultForGroupRawViews { get; set; }
+        IEnumerable<SessionResultReportRawView> SessionResultReportRawViews { get; set; }
 
         string SessionInfo { get; set; }
 
