@@ -33,9 +33,9 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
             return result;
         }
 
-        private string GetSessionName(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).Name;
+        private string GetSessionName(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId)?.Name;
 
-        private string GetSessionAcademicYear(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId).AcademicYear;
+        private string GetSessionAcademicYear(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId)?.AcademicYear;
 
         public IEnumerable<GroupSessionResultReportData> GetReportData() => Sessions.Select(session => new GroupSessionResultReportData(GetRowData(session.Id), GetSessionName(session.Id), GetSessionAcademicYear(session.Id)));
 
