@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResultsOfTheSessionNUnitTestProject", "ResultsOfTheSessionNUnitTestProject\ResultsOfTheSessionNUnitTestProject.csproj", "{53B97333-E6FF-423C-82A8-E6CFD211CC6A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseDeploymentProject", "DatabaseDeploymentProject", "{53A5CBDC-07E8-45F7-B944-B48E8DC966A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{53A5CBDC-07E8-45F7-B944-B48E8DC966A6}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ResultOfTheSessionDatabase", "ResultOfTheSessionDatabase\ResultOfTheSessionDatabase.sqlproj", "{7306B8A6-CA58-4012-BE24-BA383C66A564}"
 EndProject
