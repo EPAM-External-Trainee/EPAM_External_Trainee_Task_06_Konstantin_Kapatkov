@@ -50,5 +50,11 @@ namespace DAL.ORM.Models
 
         /// <inheritdoc cref="IStudent.GroupId"/>
         public int GroupId { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is Student student && Id == student.Id && Name == student.Name && Surname == student.Surname && Patronymic == student.Patronymic && Birthday == student.Birthday && GenderId == student.GenderId && GroupId == student.GroupId;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Id, Name, Surname, Patronymic, Birthday, GenderId, GroupId);
     }
 }

@@ -3,8 +3,6 @@ using BLL.Reports.Excel.Views.SessionResultReport.TableViews;
 using BLL.Reports.Interfaces.SessionResultReport;
 using BLL.Reports.Models.Abstract;
 using DAL.DAO.Models;
-using DAL.ORM.Models;
-using DAL.ORM.Models.SessionInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +45,7 @@ namespace BLL.Reports.Models.SessionResultReportData.Tables
         private string GetSessionName(int sessionId) => Sessions.FirstOrDefault(s => s.Id == sessionId)?.Name;
 
         /// <inheritdoc cref="IGroupTable.GetGroupTableData(int)"/>
-        public IEnumerable<GroupTableView> GetGroupTableData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new GroupTableView(GetGroupTableRowsData(sessionId, groupId), GetGroupName(groupId), GetSessionName(sessionId))).ToList();
+        public IEnumerable<GroupTableView> GetGroupTableData(int sessionId) => SessionSchedules.Where(ss => ss.SessionId == sessionId).Select(ss => ss.GroupId).Distinct().ToList().Select(groupId => new GroupTableView(GetGroupTableRowsData(sessionId, groupId).Distinct(), GetGroupName(groupId), GetSessionName(sessionId))).ToList();
 
         /// <inheritdoc cref="IGroupTable.GetGroupTableData(int, Func{GroupTableRowView, object}, bool)"/>
         public IEnumerable<GroupTableView> GetGroupTableData(int sessionId, Func<GroupTableRowView, object> predicate, bool isDescOrder)
@@ -57,11 +55,11 @@ namespace BLL.Reports.Models.SessionResultReportData.Tables
             {
                 if (isDescOrder)
                 {
-                    result.Add(new GroupTableView(GetGroupTableRowsData(sessionId, groupId).OrderBy(predicate), GetGroupName(groupId), GetSessionName(sessionId)));
+                    result.Add(new GroupTableView(GetGroupTableRowsData(sessionId, groupId).Distinct().OrderBy(predicate), GetGroupName(groupId), GetSessionName(sessionId)));
                 }
                 else
                 {
-                    result.Add(new GroupTableView(GetGroupTableRowsData(sessionId, groupId).OrderByDescending(predicate), GetGroupName(groupId), GetSessionName(sessionId)));
+                    result.Add(new GroupTableView(GetGroupTableRowsData(sessionId, groupId).Distinct().OrderByDescending(predicate), GetGroupName(groupId), GetSessionName(sessionId)));
                 }
             }
             return result;

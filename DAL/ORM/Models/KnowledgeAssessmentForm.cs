@@ -1,4 +1,5 @@
 ﻿using DAL.ORM.Interfaces;
+using System;
 
 namespace DAL.ORM.Models
 {
@@ -24,5 +25,11 @@ namespace DAL.ORM.Models
 
         /// <inheritdoc cref=" IKnowledgeAssessmentForm.Form"/>
         public string Form { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is KnowledgeAssessmentForm form && Id == form.Id && Form == form.Form;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Id, Form);
     }
 }

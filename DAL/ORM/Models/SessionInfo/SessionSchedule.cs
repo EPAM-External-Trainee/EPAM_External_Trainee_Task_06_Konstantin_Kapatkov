@@ -45,5 +45,11 @@ namespace DAL.ORM.Models.SessionInfo
 
         /// <inheritdoc cref="ISessionSchedule.KnowledgeAssessmentFormId"/>
         public int KnowledgeAssessmentFormId { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is SessionSchedule schedule && Id == schedule.Id && SessionId == schedule.SessionId && GroupId == schedule.GroupId && SubjectId == schedule.SubjectId && Date == schedule.Date && KnowledgeAssessmentFormId == schedule.KnowledgeAssessmentFormId;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Id, SessionId, GroupId, SubjectId, Date, KnowledgeAssessmentFormId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DAL.ORM.Interfaces.SessionInfo;
+using System;
 
 namespace DAL.ORM.Models.SessionInfo
 {
@@ -29,5 +30,11 @@ namespace DAL.ORM.Models.SessionInfo
 
         /// <inheritdoc cref="ISession.AcademicYear"/>
         public string AcademicYear { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is Session session && Id == session.Id && Name == session.Name && AcademicYear == session.AcademicYear;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Id, Name, AcademicYear);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DAL.ORM.Interfaces;
+using System;
 
 namespace DAL.ORM.Models
 {
@@ -24,5 +25,11 @@ namespace DAL.ORM.Models
 
         /// <inheritdoc cref="ISubject.Name"/>
         public string Name { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is Subject subject && Id == subject.Id && Name == subject.Name;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Id, Name);
     }
 }
