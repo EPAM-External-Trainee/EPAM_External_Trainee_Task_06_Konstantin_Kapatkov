@@ -128,6 +128,10 @@ namespace BLL.Reports.Excel
             }
         }
 
+        /// <summary>Writing <see cref="ExpelledStudentsReportView"/> object to an excel file</summary>
+        /// <param name="dataToWrite"></param>
+        /// <param name="excel"></param>
+        /// <param name="workSheet"></param>
         private static void WriteExpelledStudentsTable(IEnumerable<ExpelledStudentsTableView> dataToWrite, ExcelPackage excel, ExcelWorksheet workSheet)
         {
             foreach (var data in dataToWrite)
@@ -197,6 +201,9 @@ namespace BLL.Reports.Excel
             workSheet?.Dispose();
         }
 
+        /// <summary>Writing <see cref="(ExpelledStudentsReportView"/> object to an excel file</summary>
+        /// <param name="dataToWrite"><see cref="(ExpelledStudentsReportView"/> object to write</param>
+        /// <param name="filePath">File path</param>
         public static void WriteToExcel(ExpelledStudentsReportView dataToWrite, string filePath)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;

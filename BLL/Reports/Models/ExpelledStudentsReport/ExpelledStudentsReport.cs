@@ -6,23 +6,29 @@ using System;
 
 namespace BLL.Reports.Models.ExpelledStudentsReport
 {
+    /// <summary>Class describing expelled students report functionality</summary>
     public class ExpelledStudentsReport : IExpelledStudentsReport
     {
-        private ExpelledStudentsTable ExpelledStudentsTable { get; }
+        /// <summary>Expelled students table</summary>
+        private readonly IExpelledStudentsTable _expelledStudentsTable;
 
-        public ExpelledStudentsReport(string connetionString)
+        /// <summary>Creating an instance of <see cref="ExpelledStudentsReport"/> via connection string</summary>
+        /// <param name="connectionString">SQL Server connection string</param>
+        public ExpelledStudentsReport(string connectionString)
         {
-            ExpelledStudentsTable = new ExpelledStudentsTable(connetionString);
+            _expelledStudentsTable = new ExpelledStudentsTable(connectionString);
         }
 
+        /// <inheritdoc cref="IExpelledStudentsReport.GetReport(int)"/>
         public ExpelledStudentsReportView GetReport(int sessionId)
         {
-            return new ExpelledStudentsReportView { ExpelledStudentsTables = ExpelledStudentsTable.GetReportData(sessionId) };
+            return new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId) };
         }
 
+        /// <inheritdoc cref="IExpelledStudentsReport.GetReport(int, Func{ExpelledStudentsTableRowView, object}, bool)"/>
         public ExpelledStudentsReportView GetReport(int sessionId, Func<ExpelledStudentsTableRowView, object> predicate, bool isDescOrder = false)
         {
-            return new ExpelledStudentsReportView { ExpelledStudentsTables = ExpelledStudentsTable.GetReportData(sessionId, predicate, isDescOrder) };
+            return new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId, predicate, isDescOrder) };
         }
     }
 }

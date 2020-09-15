@@ -15,7 +15,7 @@ namespace BLL.Reports.Interfaces.GroupSessionResultReport
         /// <summary>Getting group session result table data</summary>
         /// <param name="predicate"><see cref="GroupSessionResultTableRowView"/> column to sort the selection by</param>
         /// <param name="isDescOrder">Is descending order</param>
-        /// <returns><see cref="GroupSessionResultTableView"/>ordered table data</returns>
+        /// <returns><see cref="GroupSessionResultTableView"/> ordered table data</returns>
         IEnumerable<GroupSessionResultTableView> GetGroupSessionResultTables(Func<GroupSessionResultTableRowView, object> predicate, bool isDescOrder = false);
     }
 }

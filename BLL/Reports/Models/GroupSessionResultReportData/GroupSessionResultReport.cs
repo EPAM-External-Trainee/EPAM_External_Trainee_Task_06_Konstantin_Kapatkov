@@ -10,13 +10,13 @@ namespace BLL.Reports.Models.GroupSessionResultReportData
     public class GroupSessionResultReport : IGroupSessionResultReport
     {
         /// <summary>Group session result table</summary>
-        private IGroupSessionResultTable GroupSessionResultTable { get; }
+        private readonly IGroupSessionResultTable _groupSessionResultTable;
 
         /// <summary>Creating an instance of <see cref="GroupSessionResultReport"/> via connection string</summary>
         /// <param name="connectionString">SQL Server connection string</param>
         public GroupSessionResultReport(string connectionString = @"Data Source=KONSTANTINPC\SQLEXPRESS; Initial Catalog=ResultSession; Integrated Security=true;")
         {
-            GroupSessionResultTable = new GroupSessionResultTable(connectionString);
+            _groupSessionResultTable = new GroupSessionResultTable(connectionString);
         }
 
         /// <inheritdoc cref="IGroupSessionResultReport.GetReport"/>
@@ -24,7 +24,7 @@ namespace BLL.Reports.Models.GroupSessionResultReportData
         {
             return new GroupSessionResultReportView
             {
-                GroupSessionResultTables = GroupSessionResultTable.GetGroupSessionResultTables()
+                GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables()
             };
         }
 
@@ -33,7 +33,7 @@ namespace BLL.Reports.Models.GroupSessionResultReportData
         {
             return new GroupSessionResultReportView
             {
-                GroupSessionResultTables = GroupSessionResultTable.GetGroupSessionResultTables(predicate, isDescOrder),
+                GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables(predicate, isDescOrder),
             };
         }
     }

@@ -12,7 +12,7 @@ namespace DAL.DAO.Models
     public abstract class Dao<T> : IDao<T>
     {
         /// <summary>SQL Server connection string</summary>
-        private string _connectionString;
+        private readonly string _connectionString;
 
         /// <summary>Creating an instance of <see cref="Dao{T}"/> via connection string</summary>
         /// <param name="connectionString">SQL Server connection string</param>
@@ -136,7 +136,7 @@ namespace DAL.DAO.Models
                 return false;
             }
         }
-      
+
         /// <inheritdoc cref="IDao{T}.TryDeleteAsync(int)"/>
         public async Task<bool> TryDeleteAsync(int id)
         {

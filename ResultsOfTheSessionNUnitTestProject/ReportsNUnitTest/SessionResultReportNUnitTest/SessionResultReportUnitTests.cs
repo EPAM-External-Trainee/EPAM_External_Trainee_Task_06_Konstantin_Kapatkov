@@ -1,12 +1,8 @@
 ﻿using BLL.Reports.Excel;
+using BLL.Reports.Interfaces.SessionResultReport;
 using BLL.Reports.Models.SessionResultReportData;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.SessionResultReportNUnitTest
 {
@@ -14,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.SessionResultRepo
     [TestFixture]
     public class SessionResultReportUnitTests : ReportsUnitTestData
     {
-        public static SessionResultReport Report = new SessionResultReport(ConnectionString);
+        public static ISessionResultReport Report = new SessionResultReport(ConnectionString);
 
         [Test]
         [TestCase(1)]

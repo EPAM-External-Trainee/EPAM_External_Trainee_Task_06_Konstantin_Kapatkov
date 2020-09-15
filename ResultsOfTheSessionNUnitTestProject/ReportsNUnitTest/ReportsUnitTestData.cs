@@ -12,6 +12,7 @@
         /// <summary>Path to group session result report excel file</summary>
         protected const string PathToGroupSessionResultReportExcelFile = @"..\..\..\..\ResultsOfTheSessionNUnitTestProject\ReportsNUnitTest\Resources\GroupSessionResultReport.xlsx";
 
+        /// <summary>Path to expelled students report excel file</summary>
         protected const string PathToExpelledStudentsReportExcelFile = @"..\..\..\..\ResultsOfTheSessionNUnitTestProject\ReportsNUnitTest\Resources\ExpelledStudentsReport.xlsx";
     }
 }

@@ -10,13 +10,13 @@ namespace BLL.Reports.Models.SessionResultReportData
     public class SessionResultReport : ISessionResultReport
     {
         /// <summary>Group table</summary>
-        private IGroupTable GroupTable { get; }
+        private readonly IGroupTable _groupTable;
 
         /// <summary>Creating an instance of <see cref="SessionResultReport"/> via connection string</summary>
         /// <param name="connectionString">SQL Server connection string</param>
         public SessionResultReport(string connectionString = @"Data Source=KONSTANTINPC\SQLEXPRESS; Initial Catalog=ResultSession; Integrated Security=true;")
         {
-            GroupTable = new GroupTable(connectionString);
+            _groupTable = new GroupTable(connectionString);
         }
 
         /// <inheritdoc cref="ISessionResultReport.GetReport(int)"/>
@@ -24,7 +24,7 @@ namespace BLL.Reports.Models.SessionResultReportData
         {
             return new SessionResultReportView
             {
-                GroupTables = GroupTable.GetGroupTableData(sessionId),
+                GroupTables = _groupTable.GetGroupTableData(sessionId),
             };
         }
 
@@ -33,7 +33,7 @@ namespace BLL.Reports.Models.SessionResultReportData
         {
             return new SessionResultReportView
             {
-                GroupTables = GroupTable.GetGroupTableData(sessionId, predicate, isDescOrder)
+                GroupTables = _groupTable.GetGroupTableData(sessionId, predicate, isDescOrder)
             };
         }
     }

@@ -1,14 +1,16 @@
 ﻿using BLL.Reports.Excel;
+using BLL.Reports.Interfaces.ExpelledStudentsReport;
 using BLL.Reports.Models.ExpelledStudentsReport;
 using NUnit.Framework;
 using System.IO;
 
 namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.ExpelledStudentsReportNUnitTest
 {
+    /// <summary>Class describes functionality for testing <see cref="ExpelledStudentsReport"/> class</summary>
     [TestFixture]
     public class ExpelledStudentsReportNUnitTest : ReportsUnitTestData
     {
-        private ExpelledStudentsReport Report { get; } = new ExpelledStudentsReport(ConnectionString);
+        private IExpelledStudentsReport Report { get; } = new ExpelledStudentsReport(ConnectionString);
 
         [Test]
         [TestCase(1)]

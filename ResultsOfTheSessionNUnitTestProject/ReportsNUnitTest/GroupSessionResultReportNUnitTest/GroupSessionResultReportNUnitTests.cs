@@ -1,4 +1,5 @@
 ﻿using BLL.Reports.Excel;
+using BLL.Reports.Interfaces.GroupSessionResultReport;
 using BLL.Reports.Models.GroupSessionResultReportData;
 using NUnit.Framework;
 using System.IO;
@@ -9,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.GroupSessionResul
     [TestFixture]
     public class GroupSessionResultReportUnitTests : ReportsUnitTestData
     {
-        private GroupSessionResultReport Report { get; } = new GroupSessionResultReport(ConnectionString);
+        private IGroupSessionResultReport Report { get; } = new GroupSessionResultReport(ConnectionString);
 
         [Test]
         public void GroupSessionResultReport_Test()
