@@ -11,6 +11,6 @@ namespace ResultsOfTheSession.PreparationOfReports.Interfaces.SessionResultWithG
 
         string AcademicYear { get; set; }
 
-        string[] Headers { get; set; }
+        string[] Headers { get; }
     }
 }

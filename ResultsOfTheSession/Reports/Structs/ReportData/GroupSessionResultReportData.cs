@@ -21,7 +21,7 @@ namespace ResultsOfTheSession.PreparationOfReports.Models.SessionResultWithGroup
 
         public string AcademicYear { get; set; }
 
-        public string[] Headers { get; set; }
+        public string[] Headers { get; }
 
         public override bool Equals(object obj) => obj is GroupSessionResultReportData data && GroupSessionResultReportRowViews.SequenceEqual(data.GroupSessionResultReportRowViews) && SessionName == data.SessionName && AcademicYear == data.AcademicYear && Headers.SequenceEqual(data.Headers);
 

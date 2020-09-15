@@ -21,6 +21,6 @@ namespace ResultsOfTheSession.ORM.Models.Session
 
         public override int GetHashCode() => HashCode.Combine(Id, SubjectId, StudentId, Assessment);
 
-        public override string ToString() => $"Sessin result id: {Id}, subject id: {SubjectId}, student id: {StudentId}, assesment: {Assessment}.";
+        public override string ToString() => $"Session result id: {Id}, subject id: {SubjectId}, student id: {StudentId}, assesment: {Assessment}.";
     }
 }

@@ -5,7 +5,7 @@ using ResultsOfTheSession.ORM.Models.Session;
 
 namespace ResultsOfTheSession.DAO
 {
-    public class DaoFactory : IDaoFactory
+    public sealed class DaoFactory : IDaoFactory
     {
         private static DaoFactory _instance;
         private static string _connectionString;
