@@ -1,7 +1,4 @@
-USE [ResultSession]
-GO
-
-INSERT INTO [dbo].[Genders] ([GenderType]) VALUES ('Man')
+﻿INSERT INTO [dbo].[Genders] ([GenderType]) VALUES ('Man')
 GO
 
 INSERT INTO [dbo].[Genders] ([GenderType]) VALUES ('Woman')
