@@ -150,9 +150,9 @@ namespace BLL.Reports.Excel
 
                 for (int i = ++currentRow, j = 0; j < data.TableRowViews.Count(); i++, j++)
                 {
-                    workSheet.Cells[i, 1].Value = data.TableRowViews.ToList()[j].Surname;
-                    workSheet.Cells[i, 2].Value = data.TableRowViews.ToList()[j].Name;
-                    workSheet.Cells[i, 3].Value = data.TableRowViews.ToList()[j].Patronymic;
+                    workSheet.Cells[i, 1].Value = data.TableRowViews.ToList()[j].StudentSurname;
+                    workSheet.Cells[i, 2].Value = data.TableRowViews.ToList()[j].StudentName;
+                    workSheet.Cells[i, 3].Value = data.TableRowViews.ToList()[j].StudentPatronymic;
                 }
 
                 SetBorder(excel, workSheet, data.GroupName);

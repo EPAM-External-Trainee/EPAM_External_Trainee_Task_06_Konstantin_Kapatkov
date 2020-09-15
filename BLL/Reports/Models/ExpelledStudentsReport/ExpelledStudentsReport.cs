@@ -1,12 +1,13 @@
 ﻿using BLL.Reports.Excel.Views.ExpelledStudentsReport.ReportDataViews;
 using BLL.Reports.Excel.Views.ExpelledStudentsReport.TableRowViews;
+using BLL.Reports.Interfaces.ExpelledStudentsReport;
 using BLL.Reports.Models.ExpelledStudentTable.Tables;
 using System;
 
 namespace BLL.Reports.Models.ExpelledStudentsReport
 {
-    public class ExpelledStudentsReport
-    {    
+    public class ExpelledStudentsReport : IExpelledStudentsReport
+    {
         private ExpelledStudentsTable ExpelledStudentsTable { get; }
 
         public ExpelledStudentsReport(string connetionString)

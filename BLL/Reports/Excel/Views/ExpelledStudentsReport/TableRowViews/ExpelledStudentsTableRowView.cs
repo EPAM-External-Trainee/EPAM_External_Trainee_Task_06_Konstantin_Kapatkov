@@ -6,16 +6,15 @@ namespace BLL.Reports.Excel.Views.ExpelledStudentsReport.TableRowViews
     {
         public ExpelledStudentsTableRowView(string name, string surname, string patronumic)
         {
-            Name = name;
-            Surname = surname;
-            Patronymic = patronumic;
+            StudentName = name;
+            StudentSurname = surname;
+            StudentPatronymic = patronumic;
         }
 
-        public string Name { get; set; }
+        public string StudentName { get; set; }
 
-        public string Surname { get; set; }
+        public string StudentSurname { get; set; }
 
-        public string Patronymic { get; set; }
-
+        public string StudentPatronymic { get; set; }
     }
 }

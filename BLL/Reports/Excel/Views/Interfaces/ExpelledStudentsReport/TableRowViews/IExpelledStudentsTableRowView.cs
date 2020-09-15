@@ -2,10 +2,10 @@
 {
     public interface IExpelledStudentsTableRowView
     {
-        string Name { get; set; }
+        string StudentName { get; set; }
 
-        string Surname { get; set; }
+        string StudentSurname { get; set; }
 
-        string Patronymic { get; set; }
+        string StudentPatronymic { get; set; }
     }
 }

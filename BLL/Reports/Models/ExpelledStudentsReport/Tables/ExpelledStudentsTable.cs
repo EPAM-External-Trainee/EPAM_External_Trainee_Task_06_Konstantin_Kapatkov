@@ -1,5 +1,6 @@
 ﻿using BLL.Reports.Excel.Views.ExpelledStudentsReport.TableRowViews;
 using BLL.Reports.Excel.Views.ExpelledStudentsReport.TableViews;
+using BLL.Reports.Interfaces.ExpelledStudentsReport;
 using BLL.Reports.Models.Abstract;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace BLL.Reports.Models.ExpelledStudentTable.Tables
 {
-    public class ExpelledStudentsTable : Report
+    public class ExpelledStudentsTable : Report, IExpelledStudentsTable
     {
         public ExpelledStudentsTable(string connectionString) : base(connectionString)
         {

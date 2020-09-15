@@ -1,12 +1,7 @@
 ﻿using BLL.Reports.Excel;
 using BLL.Reports.Models.ExpelledStudentsReport;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.ExpelledStudentsReportNUnitTest
 {
@@ -20,6 +15,54 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.ExpelledStudentsR
         public void GroupExpelledStudentsReport_Test(int sessionId)
         {
             ExcelWriter.WriteToExcel(Report.GetReport(sessionId), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, false)]
+        public void GroupExpelledStudentsReport_OrderBy_StudentName_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentName, isDesc), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, true)]
+        public void GroupExpelledStudentsReport_OrderByDescending_StudentName_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentName, isDesc), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, false)]
+        public void GroupExpelledStudentsReport_OrderBy_StudentSurname_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentSurname, isDesc), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, true)]
+        public void GroupExpelledStudentsReport_OrderByDescending_StudentSurname_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentSurname, isDesc), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, false)]
+        public void GroupExpelledStudentsReport_OrderBy_StudentPatronymic_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentPatronymic, isDesc), PathToExpelledStudentsReportExcelFile);
+            Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
+        }
+
+        [Test]
+        [TestCase(1, true)]
+        public void GroupExpelledStudentsReport_OrderByDescending_StudentPatronymic_Test(int sessionId, bool isDesc)
+        {
+            ExcelWriter.WriteToExcel(Report.GetReport(sessionId, r => r.StudentPatronymic, isDesc), PathToExpelledStudentsReportExcelFile);
             Assert.IsTrue(File.Exists(PathToGroupSessionResultReportExcelFile));
         }
     }
