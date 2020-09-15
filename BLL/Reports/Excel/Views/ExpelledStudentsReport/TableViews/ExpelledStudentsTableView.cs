@@ -1,6 +1,8 @@
 ﻿using BLL.Reports.Excel.Views.ExpelledStudentsReport.TableRowViews;
 using BLL.Reports.Excel.Views.Interfaces.ExpelledStudentsReport.TableViews;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Reports.Excel.Views.ExpelledStudentsReport.TableViews
 {
@@ -24,5 +26,11 @@ namespace BLL.Reports.Excel.Views.ExpelledStudentsReport.TableViews
 
         /// <inheritdoc cref="IExpelledStudentsTableView.GroupName"/>
         public string GroupName { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is ExpelledStudentsTableView view && Headers.SequenceEqual(view.Headers) && TableRowViews.SequenceEqual(view.TableRowViews) && GroupName == view.GroupName;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Headers, TableRowViews, GroupName);
     }
 }

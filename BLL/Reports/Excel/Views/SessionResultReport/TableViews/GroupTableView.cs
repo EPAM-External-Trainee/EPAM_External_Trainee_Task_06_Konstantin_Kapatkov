@@ -1,6 +1,8 @@
 ﻿using BLL.Reports.Excel.Views.Interfaces.SessionResultReport.TableViews;
 using BLL.Reports.Excel.Views.SessionResultReport.TableRowViews;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Reports.Excel.Views.SessionResultReport.TableViews
 {
@@ -29,5 +31,11 @@ namespace BLL.Reports.Excel.Views.SessionResultReport.TableViews
 
         /// <inheritdoc cref="IGroupTableView.SessionName"/>
         public string SessionName { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is GroupTableView view && Headers.SequenceEqual(view.Headers) && TableRawViews.SequenceEqual(view.TableRawViews) && GroupName == view.GroupName && SessionName == view.SessionName;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Headers, TableRawViews, GroupName, SessionName);
     }
 }

@@ -26,8 +26,10 @@ namespace BLL.Reports.Excel.Views.ExpelledStudentsReport.TableRowViews
         /// <inheritdoc cref="IExpelledStudentsTableRowView.StudentPatronymic"/>
         public string StudentPatronymic { get; set; }
 
+        /// <inheritdoc cref="object.Equals(object?)"/>
         public override bool Equals(object obj) => obj is ExpelledStudentsTableRowView view && StudentName == view.StudentName && StudentSurname == view.StudentSurname && StudentPatronymic == view.StudentPatronymic;
 
+        /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode() => HashCode.Combine(StudentName, StudentSurname, StudentPatronymic);
     }
 }

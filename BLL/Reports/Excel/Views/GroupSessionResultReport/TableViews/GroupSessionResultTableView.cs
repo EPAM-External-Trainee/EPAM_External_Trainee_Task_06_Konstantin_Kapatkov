@@ -1,6 +1,8 @@
 ﻿using BLL.Reports.Excel.Views.GroupSessionResultReport.TableRowViews;
 using BLL.Reports.Excel.Views.GroupSessionResultReport.TableViews;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Reports.Excel.Views.Interfaces.GroupSessionResultReport.TableViews
 {
@@ -34,5 +36,11 @@ namespace BLL.Reports.Excel.Views.Interfaces.GroupSessionResultReport.TableViews
 
         /// <inheritdoc cref="IGroupSessionResultTableView.AcademicYear"/>
         public string AcademicYear { get; set; }
+
+        /// <inheritdoc cref="object.Equals(object?)"/>
+        public override bool Equals(object obj) => obj is GroupSessionResultTableView view && Headers.SequenceEqual(view.Headers) && TableRowViews.SequenceEqual(view.TableRowViews) && SessionName == view.SessionName && AcademicYear == view.AcademicYear;
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(Headers, TableRowViews, SessionName, AcademicYear);
     }
 }

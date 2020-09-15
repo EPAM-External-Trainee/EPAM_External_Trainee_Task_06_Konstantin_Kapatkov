@@ -2,6 +2,9 @@
 using BLL.Reports.Excel.Views.ExpelledStudentsReport.TableViews;
 using BLL.Reports.Interfaces.ExpelledStudentsReport;
 using BLL.Reports.Models.Abstract;
+using DAL.DAO.Models;
+using DAL.ORM.Models;
+using DAL.ORM.Models.SessionInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,5 +69,22 @@ namespace BLL.Reports.Models.ExpelledStudentTable.Tables
         {
             return isDescOrder ? GetGroupIds(sessionId).Select(groupId => new ExpelledStudentsTableView(GetRowData(sessionId, groupId).OrderBy(predicate), GetGroupName(groupId))) : GetGroupIds(sessionId).Select(groupId => new ExpelledStudentsTableView(GetRowData(sessionId, groupId).OrderByDescending(predicate), GetGroupName(groupId)));
         }
+
+        /// <inheritdoc cref="object.Equals(object)"/>
+        public override bool Equals(object obj)
+        {
+            return obj is ExpelledStudentsTable table &&
+                   EqualityComparer<DaoFactory>.Default.Equals(DaoFactory, table.DaoFactory) &&
+                   Sessions.SequenceEqual(table.Sessions) &&
+                   SessionResults.SequenceEqual(table.SessionResults) &&
+                   SessionSchedules.SequenceEqual(table.SessionSchedules) &&
+                   Groups.SequenceEqual(table.Groups) &&
+                   KnowledgeAssessmentForms.SequenceEqual(table.KnowledgeAssessmentForms) &&
+                   Students.SequenceEqual(table.Students) &&
+                   Subjects.SequenceEqual(table.Subjects);
+        }
+
+        /// <inheritdoc cref="object.GetHashCode"/>
+        public override int GetHashCode() => HashCode.Combine(DaoFactory, Sessions, SessionResults, SessionSchedules, Groups, KnowledgeAssessmentForms, Students, Subjects);
     }
 }
