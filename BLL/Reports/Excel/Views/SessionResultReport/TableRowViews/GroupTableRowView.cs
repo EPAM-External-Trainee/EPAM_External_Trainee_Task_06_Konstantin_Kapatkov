@@ -1,4 +1,5 @@
 ﻿using BLL.Reports.Excel.Views.Interfaces.SessionResultReport.TableRowViews;
+using System;
 
 namespace BLL.Reports.Excel.Views.SessionResultReport.TableRowViews
 {
@@ -49,17 +50,6 @@ namespace BLL.Reports.Excel.Views.SessionResultReport.TableRowViews
         public override bool Equals(object obj) => obj is GroupTableRowView view && StudentSurname == view.StudentSurname && StudentName == view.StudentName && StudentPatronymic == view.StudentPatronymic && Subject == view.Subject && AssessmentForm == view.AssessmentForm && Date == view.Date && Assessment == view.Assessment;
 
         /// <inheritdoc cref="object.GetHashCode"/>
-        public override int GetHashCode()
-        {
-            int hashCode = 908230445;
-            hashCode = hashCode * -1521134295 + StudentName.GetHashCode();
-            hashCode = hashCode * -1521134295 + StudentSurname.GetHashCode();
-            hashCode = hashCode * -1521134295 + StudentPatronymic.GetHashCode();
-            hashCode = hashCode * -1521134295 + Subject.GetHashCode();
-            hashCode = hashCode * -1521134295 + AssessmentForm.GetHashCode();
-            hashCode = hashCode * -1521134295 + Date.GetHashCode();
-            hashCode = hashCode * -1521134295 + Assessment.GetHashCode();
-            return hashCode;
-        }
+        public override int GetHashCode() => HashCode.Combine(StudentName, StudentSurname, StudentPatronymic, Subject, AssessmentForm, Date, Assessment);
     }
 }

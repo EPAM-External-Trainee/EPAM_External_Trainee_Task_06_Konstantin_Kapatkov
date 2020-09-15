@@ -1,4 +1,5 @@
 ﻿using BLL.Reports.Excel.Views.Interfaces.GroupSessionResultReport;
+using System;
 
 namespace BLL.Reports.Excel.Views.GroupSessionResultReport.TableRowViews
 {
@@ -34,14 +35,6 @@ namespace BLL.Reports.Excel.Views.GroupSessionResultReport.TableRowViews
         public override bool Equals(object obj) => obj is GroupSessionResultTableRowView view && GroupName == view.GroupName && MaxAssessment == view.MaxAssessment && MinAssessment == view.MinAssessment && AvgAssessment == view.AvgAssessment;
 
         /// <inheritdoc cref="object.GetHashCode"/>
-        public override int GetHashCode()
-        {
-            int hashCode = -1239856536;
-            hashCode = (hashCode * -1521134295) + GroupName.GetHashCode();
-            hashCode = (hashCode * -1521134295) + MaxAssessment.GetHashCode();
-            hashCode = (hashCode * -1521134295) + MinAssessment.GetHashCode();
-            hashCode = (hashCode * -1521134295) + AvgAssessment.GetHashCode();
-            return hashCode;
-        }
+        public override int GetHashCode() => HashCode.Combine(GroupName, MaxAssessment, MinAssessment, AvgAssessment);
     }
 }
