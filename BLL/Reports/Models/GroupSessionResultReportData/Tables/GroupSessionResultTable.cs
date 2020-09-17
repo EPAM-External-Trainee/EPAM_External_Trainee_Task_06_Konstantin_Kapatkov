@@ -2,7 +2,6 @@
 using BLL.Reports.Excel.Views.Interfaces.GroupSessionResultReport.TableViews;
 using BLL.Reports.Interfaces.GroupSessionResultReport;
 using BLL.Reports.Models.Abstract;
-using DAL.DAO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,22 +82,5 @@ namespace BLL.Reports.Models.GroupSessionResultReportData.Tables
 
             return result;
         }
-
-        /// <inheritdoc cref="object.Equals(object)"/>
-        public override bool Equals(object obj)
-        {
-            return obj is GroupSessionResultTable table &&
-                   EqualityComparer<DaoFactory>.Default.Equals(DaoFactory, table.DaoFactory) &&
-                   Sessions.SequenceEqual(table.Sessions) &&
-                   SessionResults.SequenceEqual(table.SessionResults) &&
-                   SessionSchedules.SequenceEqual(table.SessionSchedules) &&
-                   Groups.SequenceEqual(table.Groups) &&
-                   KnowledgeAssessmentForms.SequenceEqual(table.KnowledgeAssessmentForms) &&
-                   Students.SequenceEqual(table.Students) &&
-                   Subjects.SequenceEqual(table.Subjects);
-        }
-
-        /// <inheritdoc cref="object.GetHashCode"/>
-        public override int GetHashCode() => HashCode.Combine(DaoFactory, Sessions, SessionResults, SessionSchedules, Groups, KnowledgeAssessmentForms, Students, Subjects);
     }
 }
