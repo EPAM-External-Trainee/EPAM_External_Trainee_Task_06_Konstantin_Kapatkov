@@ -20,10 +20,9 @@ namespace BLL.Reports.Models.GroupSessionResultReportData.Tables
         /// <summary>Getting group marks</summary>
         /// <param name="sessionId">Session id</param>
         /// <param name="groupId">Group id</param>
-        /// <returns><see cref="IEnumerable{double}"/> group marks</returns>
+        /// <returns><see cref="IEnumerable{T}"/> group marks</returns>
         private IEnumerable<double> GetGroupMarks(int sessionId, int groupId)
         {
-            var tmp = SessionResults;
             return from sr in SessionResults
                    join st in Students on sr.StudentId equals st.Id
                    join g in Groups on st.GroupId equals g.Id

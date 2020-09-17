@@ -16,7 +16,7 @@ namespace DAL.DAO.Models
 
         /// <summary>Creating an instance of <see cref="Dao{T}"/> via connection string</summary>
         /// <param name="connectionString">SQL Server connection string</param>
-        public Dao(string connectionString) => _connectionString = connectionString;
+        protected Dao(string connectionString) => _connectionString = connectionString;
 
         /// <inheritdoc cref="IDao{T}.TryCreateAsync(T)"/>
         public async Task<bool> TryCreateAsync(T data)
@@ -65,7 +65,7 @@ namespace DAL.DAO.Models
                 Type type = typeof(T);
 
                 string tableName = $"{type.Name}s";
-                string idValue = $"@{type.GetProperty("Id").Name}";
+                string idValue = $"@{type.GetProperty("Id")?.Name}";
 
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 using SqlCommand command = new SqlCommand($"SELECT * FROM [dbo].[{tableName}] WHERE ID = {idValue}", connection);
@@ -106,12 +106,12 @@ namespace DAL.DAO.Models
                 PropertyInfo[] propertyInfos = GetTypeAndPropInfo(data).Item2;
 
                 string tableName = $"{dataType.Name}s";
-                string idValue = $"@{dataType.GetProperty("Id").Name}";
+                string idValue = $"@{dataType.GetProperty("Id")?.Name}";
                 List<string> tableColumns = new List<string>();
 
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 using SqlCommand command = new SqlCommand();
-                command.Parameters.AddWithValue(idValue, dataType.GetProperty("Id").GetValue(data));
+                command.Parameters.AddWithValue(idValue, dataType.GetProperty("Id")?.GetValue(data));
 
                 foreach (var property in propertyInfos)
                 {
@@ -145,7 +145,7 @@ namespace DAL.DAO.Models
                 Type type = typeof(T);
 
                 string tableName = $"{type.Name}s";
-                string idValue = $"@{type.GetProperty("Id").Name}";
+                string idValue = $"@{type.GetProperty("Id")?.Name}";
 
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 using SqlCommand command = new SqlCommand($"DELETE FROM [dbo].[{tableName}] WHERE ID = {idValue}", connection);
@@ -168,15 +168,13 @@ namespace DAL.DAO.Models
             try
             {
                 Type type = typeof(T);
-                PropertyInfo[] propertyInfos = type.GetProperties();
-
                 string tableName = $"{type.Name}s";
 
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 using SqlCommand command = new SqlCommand($"SELECT * FROM [dbo].[{tableName}]", connection);
 
                 await connection.OpenAsync().ConfigureAwait(false);
-                using SqlDataReader dataReader = command.ExecuteReader();
+                using SqlDataReader dataReader = await command.ExecuteReaderAsync();
                 List<T> result = new List<T>();
 
                 if (dataReader.HasRows && dataReader.FieldCount > 0)

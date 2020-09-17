@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.GroupSessionResul
     [TestFixture]
     public class GroupSessionResultReportUnitTests : ReportsUnitTestData
     {
-        private static IGroupSessionResultReport Report { get; } = new GroupSessionResultReport(ConnectionString);
+        private static IGroupSessionResultReport Report { get; } = new GroupSessionResultReport();
 
         [Test]
         public void GroupSessionResultReport_Test()

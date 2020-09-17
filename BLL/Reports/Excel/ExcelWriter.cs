@@ -174,8 +174,8 @@ namespace BLL.Reports.Excel
 
             WriteGroupTable(dataToWrite.GroupTables, excel, workSheet);
 
-            using FileStream objFileStrm = File.Create(filePath);
-            objFileStrm?.Close();
+            using FileStream stream = File.Create(filePath);
+            stream?.Close();
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
 
             excel?.Dispose();
@@ -193,16 +193,16 @@ namespace BLL.Reports.Excel
 
             WriteGroupSessionResultTable(dataToWrite.GroupSessionResultTables, excel, workSheet);
 
-            using FileStream objFileStrm = File.Create(filePath);
-            objFileStrm?.Close();
+            using FileStream stream = File.Create(filePath);
+            stream?.Close();
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
 
             excel?.Dispose();
             workSheet?.Dispose();
         }
 
-        /// <summary>Writing <see cref="(ExpelledStudentsReportView"/> object to an excel file</summary>
-        /// <param name="dataToWrite"><see cref="(ExpelledStudentsReportView"/> object to write</param>
+        /// <summary>Writing <see cref="ExpelledStudentsReportView"/> object to an excel file</summary>
+        /// <param name="dataToWrite"><see cref="ExpelledStudentsReportView"/> object to write</param>
         /// <param name="filePath">File path</param>
         public static void WriteToExcel(ExpelledStudentsReportView dataToWrite, string filePath)
         {
@@ -212,8 +212,8 @@ namespace BLL.Reports.Excel
 
             WriteExpelledStudentsTable(dataToWrite.ExpelledStudentsTables, excel, workSheet);
 
-            using FileStream objFileStrm = File.Create(filePath);
-            objFileStrm?.Close();
+            using FileStream stream = File.Create(filePath);
+            stream?.Close();
             File.WriteAllBytes(filePath, excel.GetAsByteArray());
 
             excel?.Dispose();

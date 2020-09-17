@@ -22,7 +22,7 @@ namespace BLL.Reports.Excel.Views.GroupSessionResultReport.TableRowViews
         /// <inheritdoc cref="IGroupSessionResultTableRowView.GroupName"/>
         public string GroupName { get; set; }
 
-        /// <<inheritdoc cref="IGroupSessionResultTableRowView.MaxAssessment"/>
+        /// <inheritdoc cref="IGroupSessionResultTableRowView.MaxAssessment"/>
         public double MaxAssessment { get; set; }
 
         /// <inheritdoc cref="IGroupSessionResultTableRowView.MinAssessment"/>

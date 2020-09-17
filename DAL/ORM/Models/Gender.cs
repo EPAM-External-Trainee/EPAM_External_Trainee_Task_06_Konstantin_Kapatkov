@@ -12,13 +12,13 @@ namespace DAL.ORM.Models
         }
 
         /// <summary>Creating an instance of <see cref="Gender"/> via gender type name</summary>
-        /// <param name="gednerType">Gender type name</param>
-        public Gender(string gednerType) => GenderType = gednerType;
+        /// <param name="genderType">Gender type name</param>
+        public Gender(string genderType) => GenderType = genderType;
 
         /// <summary>Creating an instance of <see cref="Gender"/> via id and gender type name</summary>
         /// <param name="id">Gender id</param>
-        /// <param name="gednerType">Gender type name</param>
-        public Gender(int id, string gednerType) => (Id, GenderType) = (id, gednerType);
+        /// <param name="genderType">Gender type name</param>
+        public Gender(int id, string genderType) => (Id, GenderType) = (id, genderType);
 
         /// <inheritdoc cref=" IGender.Id"/>
         public int Id { get; set; }

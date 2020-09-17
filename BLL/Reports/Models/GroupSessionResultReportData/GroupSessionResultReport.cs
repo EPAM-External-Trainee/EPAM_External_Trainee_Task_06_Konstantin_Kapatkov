@@ -22,7 +22,7 @@ namespace BLL.Reports.Models.GroupSessionResultReportData
         /// <inheritdoc cref="IGroupSessionResultReport.GetReport"/>
         public GroupSessionResultReportView GetReport() => new GroupSessionResultReportView { GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables() };
 
-        /// <inheritdoc cref="IGroupSessionResultReport.GetReport(Func{GroupSessionResultTableRowView, object}, bool)/>
+        /// <inheritdoc cref="IGroupSessionResultReport.GetReport(Func{GroupSessionResultTableRowView, object}, bool)"/>
         public GroupSessionResultReportView GetReport(Func<GroupSessionResultTableRowView, object> predicate, bool isDescOrder = false) => new GroupSessionResultReportView { GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables(predicate, isDescOrder) };
     }
 }
