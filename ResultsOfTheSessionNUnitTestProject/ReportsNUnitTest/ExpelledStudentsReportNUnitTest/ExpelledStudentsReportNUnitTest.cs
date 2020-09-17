@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.ExpelledStudentsR
     [TestFixture]
     public class ExpelledStudentsReportNUnitTest : ReportsUnitTestData
     {
-        private IExpelledStudentsReport Report { get; } = new ExpelledStudentsReport(ConnectionString);
+        private static IExpelledStudentsReport Report { get; } = new ExpelledStudentsReport(ConnectionString);
 
         [Test]
         [TestCase(1)]

@@ -10,7 +10,7 @@ namespace ResultsOfTheSessionNUnitTestProject.ReportsNUnitTest.SessionResultRepo
     [TestFixture]
     public class SessionResultReportUnitTests : ReportsUnitTestData
     {
-        public static ISessionResultReport Report = new SessionResultReport(ConnectionString);
+        private static ISessionResultReport Report = new SessionResultReport(ConnectionString);
 
         [Test]
         [TestCase(1)]
