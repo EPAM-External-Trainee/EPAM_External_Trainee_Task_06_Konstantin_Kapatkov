@@ -20,15 +20,9 @@ namespace BLL.Reports.Models.ExpelledStudentsReport
         }
 
         /// <inheritdoc cref="IExpelledStudentsReport.GetReport(int)"/>
-        public ExpelledStudentsReportView GetReport(int sessionId)
-        {
-            return new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId) };
-        }
+        public ExpelledStudentsReportView GetReport(int sessionId) => new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId) };
 
         /// <inheritdoc cref="IExpelledStudentsReport.GetReport(int, Func{ExpelledStudentsTableRowView, object}, bool)"/>
-        public ExpelledStudentsReportView GetReport(int sessionId, Func<ExpelledStudentsTableRowView, object> predicate, bool isDescOrder = false)
-        {
-            return new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId, predicate, isDescOrder) };
-        }
+        public ExpelledStudentsReportView GetReport(int sessionId, Func<ExpelledStudentsTableRowView, object> predicate, bool isDescOrder = false) => new ExpelledStudentsReportView { ExpelledStudentsTables = _expelledStudentsTable.GetReportData(sessionId, predicate, isDescOrder) };
     }
 }

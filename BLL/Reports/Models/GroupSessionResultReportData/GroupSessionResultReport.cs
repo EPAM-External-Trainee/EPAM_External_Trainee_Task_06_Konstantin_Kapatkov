@@ -20,21 +20,9 @@ namespace BLL.Reports.Models.GroupSessionResultReportData
         }
 
         /// <inheritdoc cref="IGroupSessionResultReport.GetReport"/>
-        public GroupSessionResultReportView GetReport()
-        {
-            return new GroupSessionResultReportView
-            {
-                GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables()
-            };
-        }
+        public GroupSessionResultReportView GetReport() => new GroupSessionResultReportView { GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables() };
 
         /// <inheritdoc cref="IGroupSessionResultReport.GetReport(Func{GroupSessionResultTableRowView, object}, bool)/>
-        public GroupSessionResultReportView GetReport(Func<GroupSessionResultTableRowView, object> predicate, bool isDescOrder = false)
-        {
-            return new GroupSessionResultReportView
-            {
-                GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables(predicate, isDescOrder),
-            };
-        }
+        public GroupSessionResultReportView GetReport(Func<GroupSessionResultTableRowView, object> predicate, bool isDescOrder = false) => new GroupSessionResultReportView { GroupSessionResultTables = _groupSessionResultTable.GetGroupSessionResultTables(predicate, isDescOrder) };
     }
 }

@@ -14,7 +14,6 @@ namespace BLL.Reports.Models.Abstract
         protected Report(string connectionString)
         {
             DaoFactory = DaoFactory.GetInstance(connectionString);
-
             Sessions = DaoFactory.GetSession().TryReadAllAsync().Result;
             SessionResults = DaoFactory.GetSessionResult().TryReadAllAsync().Result;
             SessionSchedules = DaoFactory.GetSessionSchedule().TryReadAllAsync().Result;

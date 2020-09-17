@@ -3,7 +3,6 @@ using BLL.Reports.Excel.Views.SessionResultReport.TableRowViews;
 using BLL.Reports.Interfaces.SessionResultReport;
 using BLL.Reports.Models.SessionResultReportData.Tables;
 using System;
-using System.Linq;
 
 namespace BLL.Reports.Models.SessionResultReportData
 {
